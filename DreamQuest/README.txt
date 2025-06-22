@@ -1,3 +1,13 @@
+Content:
+
+Fixes.dll
+  Made poison damage piercing when it should be.
+  Treasure Chests now will give a few coins for card skipped.
+  Fixed wrong Discharge description
+
+
+------
+
 🔧 How to Install
 Make sure the game is installed and MelonLoader is set up.
 
