@@ -1,9 +1,12 @@
 Content:
 
-Fixes.dll
-  Made poison damage piercing when it should be.
-  Treasure Chests now will give a few coins per card skipped.
-  Fixed wrong Discharge description
+DreamQuestFixes.dll
+  	Made poison damage piercing when it should be.
+  	Treasure Chests now will give a few coins per card skipped.
+  	Fixed wrong Discharge description
+
+WarriorFixesDebug.dll
+	Altered the Warrior starting deck to better debug the changes made in Fixes (Not recommended)
 
 
 ------
