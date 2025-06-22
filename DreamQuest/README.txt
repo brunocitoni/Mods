@@ -7,6 +7,7 @@ DreamQuestFixes.dll
 
 WarriorFixesDebug.dll
 	Altered the Warrior starting deck to better debug the changes made in Fixes (Not recommended)
+	The venom card will now poison the opponent for 3, grant them a shield, and grant pierce on the warrior.
 
 
 ------
