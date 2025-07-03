@@ -14,15 +14,24 @@ namespace GamblerProfession
 {
     public class GamblerProfessionInit : MelonMod
     {
+        public static GamblerProfession Gambler;
         public override void OnInitializeMelon()
         {
-            LoggerInstance.Msg("Initialized GamblerProfession.");
+            Gambler = new GamblerProfession();
+            Gambler.Initialize();
+        
+        LoggerInstance.Msg("Initialized GamblerProfession.");
         }
     }
 
     public class GamblerProfession : ProfessionBase
     {
         int level = 1;
+
+        ~GamblerProfession()
+        {
+            MelonLogger.Msg("GamblerProfession destroyed.");
+        }
 
         public override void Initialize()
         {
@@ -364,6 +373,11 @@ namespace GamblerProfession
 
     public class CombatAbilityCoinToss : CombatAbility
     {
+        ~CombatAbilityCoinToss()
+        {
+            MelonLogger.Msg("GamblerProfession destroyed.");
+        }
+
         public override void Initialize()
         {
             base.Initialize();

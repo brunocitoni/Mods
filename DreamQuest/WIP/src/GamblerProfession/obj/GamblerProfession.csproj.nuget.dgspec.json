@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Bruno\\source\\repos\\GamblerProfession\\GamblerProfession.csproj": {}
+    "C:\\Users\\Bruno\\Documents\\GitHub\\Mods\\DreamQuest\\WIP\\src\\GamblerProfession\\GamblerProfession.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Bruno\\source\\repos\\GamblerProfession\\GamblerProfession.csproj": {
+    "C:\\Users\\Bruno\\Documents\\GitHub\\Mods\\DreamQuest\\WIP\\src\\GamblerProfession\\GamblerProfession.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Bruno\\source\\repos\\GamblerProfession\\GamblerProfession.csproj",
+        "projectUniqueName": "C:\\Users\\Bruno\\Documents\\GitHub\\Mods\\DreamQuest\\WIP\\src\\GamblerProfession\\GamblerProfession.csproj",
         "projectName": "GamblerProfession",
-        "projectPath": "C:\\Users\\Bruno\\source\\repos\\GamblerProfession\\GamblerProfession.csproj",
+        "projectPath": "C:\\Users\\Bruno\\Documents\\GitHub\\Mods\\DreamQuest\\WIP\\src\\GamblerProfession\\GamblerProfession.csproj",
         "packagesPath": "C:\\Users\\Bruno\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Bruno\\source\\repos\\GamblerProfession\\obj\\",
+        "outputPath": "C:\\Users\\Bruno\\Documents\\GitHub\\Mods\\DreamQuest\\WIP\\src\\GamblerProfession\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
