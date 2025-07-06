@@ -1,31 +1,39 @@
-🔧 How to Install
-Make sure the game is installed and MelonLoader is set up.
+# 🔧 How to Install
 
-If not, get it here: https://melonwiki.xyz
+Make sure the game is installed and MelonLoader is set up.  
+If not, get it here: [https://melonwiki.xyz](https://melonwiki.xyz)
 
-Download and extract this mod to your game's folder.
+1. Download and extract the contents of the **`dll`** folder into the `Mods` folder inside the game's Steam folder.  
+2. Download and extract the contents of the **`assets`** folder into the `UserData` folder inside the game's Steam folder.  
+3. Run the game.
 
-The .dll file should go inside the Mods folder.
+---
 
-Run the game. You should see the mod name in the MelonLoader console.
+## 🎯 Quality of Life (QoL)
 
--------
+Improvements and fixes for a smoother gameplay experience:
 
-Content:
+### `DreamQuestFixes.dll`
+- 🧪 Poison damage now pierces when appropriate.
+- 💰 Treasure chests reward a few coins per skipped card.
+- 📝 Fixed incorrect *Discharge* card description.
 
-DreamQuestFixes.dll
-  	-Made poison damage piercing when it should be.
-  	-Treasure Chests now will give a few coins per card skipped.
-  	-Fixed wrong Discharge description
+### `KeyboardMovement.dll`
+- 🎮 Enables dungeon movement using **WASD** or arrow keys.
+- 🚧 More keyboard features planned for future updates.
 
-WarriorFixesDebug.dll
-	Altered the Warrior starting deck to better debug the changes made in Fixes (Not recommended)
-	The venom card will now poison the opponent for 3, grant them a shield, and grant pierce on the warrior.
+### `AutoEndBattle.dll`
+- ⏩ Automatically closes post-battle treasure screens — no more extra clicks.
 
-KeyboardMovement.dll
-	Adds the possibility of exploring the dungeon using WASD or the directional arrows.
-	In the future it will hopefully provide even more functionality through keyboard.
+---
 
-AutoEndBattle.dll
-	Skips having to click on the treasure after every battle, closing them automatically.
+## 🧩 Custom Content
+
+Add new classes and features to the game:
+
+### `CustomContentLoader.dll`
+- 📦 **Required** to enable any custom content.
+
+### `GamblerClass.dll` (Work in Progress)
+- 🎲 Adds a new class focused on randomness and risk-taking.
 

@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Bruno\\Documents\\GitHub\\Mods\\DreamQuest\\src\\CustomContentLoader\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{13FDC462-0403-44B6-A33D-DCF6EB70C01A}|CustomContentLoader.csproj|c:\\users\\bruno\\documents\\github\\mods\\dreamquest\\src\\customcontentloader\\customcontentloader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{13FDC462-0403-44B6-A33D-DCF6EB70C01A}|CustomContentLoader.csproj|solutionrelative:customcontentloader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "CustomContentLoader.cs",
+              "DocumentMoniker": "C:\\Users\\Bruno\\Documents\\GitHub\\Mods\\DreamQuest\\src\\CustomContentLoader\\CustomContentLoader.cs",
+              "RelativeDocumentMoniker": "CustomContentLoader.cs",
+              "ToolTip": "C:\\Users\\Bruno\\Documents\\GitHub\\Mods\\DreamQuest\\src\\CustomContentLoader\\CustomContentLoader.cs",
+              "RelativeToolTip": "CustomContentLoader.cs",
+              "ViewState": "AgIAAB8AAAAAAAAAAAAAAEQAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-06T17:31:57.651Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
