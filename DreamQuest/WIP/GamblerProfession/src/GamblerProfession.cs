@@ -51,7 +51,6 @@ namespace GamblerProfession
 
             this.internalName = typeof(GamblerProfession).AssemblyQualifiedName;
             base.Initialize();
-            InitDictionaryAndWeights();
         }
 
         public override void AddDungeonActions(DungeonPlayer d)
@@ -295,35 +294,35 @@ namespace GamblerProfession
             possibleAttributes.Add(new Dictionary<PlayerAttributes, int> { { PlayerAttributes.BASE_CHILLED, level % 3 } });
             possibleAttributes.Add(new Dictionary<PlayerAttributes, int> { { PlayerAttributes.BERSERK, level % 5 } });
 
-            // create int of weights
-            weights = new float[20]
+            weights = new float[19]
             {
-                0.000267f,
-                0.001213f,
-                0.004573f,
-                0.013304f,
-                0.031544f,
-                0.064759f,
-                0.112209f,
-                0.162336f,
-                0.199471f,
-                0.213245f,
-                0.199471f,
-                0.162336f,
-                0.112209f,
-                0.064759f,
-                0.031544f,
-                0.013304f,
-                0.004573f,
-                0.001213f,
-                0.000267f,
-                0.000015f
+    0.020000f,
+    0.029169f,
+    0.041741f,
+    0.058170f,
+    0.077998f,
+    0.099818f,
+    0.121969f,
+    0.142290f,
+    0.158842f,
+    0.170122f,
+    0.158842f,
+    0.142290f,
+    0.121969f,
+    0.099818f,
+    0.077998f,
+    0.058170f,
+    0.041741f,
+    0.029169f,
+    0.020000f
             };
+
         }
 
         // TODO
         public override void CombatApplyToPlayer(Player p)
         {
+            InitDictionaryAndWeights();
             ApplyNewBuff(p);
         }
 
@@ -346,7 +345,7 @@ namespace GamblerProfession
             int enemyBuffIndex = GetRandomWeightedIndex(weights);
 
             MelonLogger.Msg("index player buff : " + playerBuffIndex);
-            if(playerBuffIndex > possibleAttributes.Count)
+            if (playerBuffIndex > possibleAttributes.Count)
                 MelonLogger.Msg("SOMETHING WENT WRONG WITH playerBuffIndex: " + playerBuffIndex);
             p.AddToAttribute(
                 possibleAttributes[playerBuffIndex].First().Key,
@@ -378,40 +377,39 @@ namespace GamblerProfession
         {
             if (weights == null || weights.Length == 0) return -1;
 
-            float w;
-            float t = 0;
-            int i;
-            for (i = 0; i < weights.Length; i++)
+            float totalWeight = 0f;
+            for (int i = 0; i < weights.Length; i++)
             {
-                w = weights[i];
+                float w = weights[i];
+                if (float.IsPositiveInfinity(w)) return i;
+                if (w >= 0f && !float.IsNaN(w)) totalWeight += w;
+            }
 
-                if (float.IsPositiveInfinity(w))
+            if (totalWeight <= 0f) return -1;
+
+            float r = UnityEngine.Random.value;
+            float cumulative = 0f;
+
+            for (int i = 0; i < weights.Length; i++)
+            {
+                float w = weights[i];
+                if (w <= 0f || float.IsNaN(w)) continue;
+
+                cumulative += w / totalWeight;
+                if (r < cumulative)
                 {
                     return i;
                 }
-                else if (w >= 0f && !float.IsNaN(w))
-                {
-                    t += weights[i];
-                }
             }
 
-            float r = UnityEngine.Random.value;
-            float s = 0f;
-
-            for (i = 0; i < weights.Length; i++)
-            {
-                w = weights[i];
-                if (float.IsNaN(w) || w <= 0f) continue;
-
-                s += w / t;
-                if (s >= r) return i;
-            }
-
-            return -1;
+            // Fallback in case of floating point rounding errors
+            return weights.Length - 1;
         }
+
     }
 
-    public class CombatAbilityGamble: CombatAbility
+    #region CombatAbilities
+    public class CombatAbilityGamble : CombatAbility
     {
         ~CombatAbilityGamble()
         {
@@ -546,6 +544,7 @@ namespace GamblerProfession
         }
     }
 
+    #endregion
     #region CARDS
 
     public class DoubleRoll : AttackCard
@@ -571,9 +570,9 @@ namespace GamblerProfession
             this.internalName = typeof(DoubleRoll).AssemblyQualifiedName;
             this.cardName = "Double Roll";
             this.text = "Deal 1-6 @atk damage to you. Deal 1-6 damage to the opponent";
-            this.flavorText = "Could go both ways";
+            this.flavorText = "COULD GO YOUR WAY, COULD GO MINE. - Alan Partridge";
             this.cost = 0;
-            this.goldCost = 150;
+            this.goldCost = 20;
             this.manaCost = 0;
             this.level = 1;
             this.maxLevel = 1;
@@ -585,14 +584,8 @@ namespace GamblerProfession
             this.cardTexture = GetTextureFromPath(ImageName());
             if (this.IsPhysical() && this.physical)
             {
-                MelonLogger.Msg("is was physical!");
                 this.physical.ChangeTextureNow(GetTextureFromPath(ImageName()));
             }
-            else
-            {
-                MelonLogger.Msg("is was NOT physical!");
-            }
-
         }
 
         // Token: 0x060004FD RID: 1277 RVA: 0x0001D864 File Offset: 0x0001BA64
@@ -606,10 +599,8 @@ namespace GamblerProfession
 
         public override string ImageName()
         {
-            MelonLogger.Msg("Image name called");
             string folder = Path.Combine(MelonEnvironment.UserDataDirectory, "GamblerProfession");
             string path = Path.Combine(folder, "DoubleRoll.png");
-            MelonLogger.Msg(path);
             return path;
         }
 
@@ -619,7 +610,6 @@ namespace GamblerProfession
             Texture2D tex = new Texture2D(2, 2); // size will be replaced by LoadImage
             if (tex.LoadImage(imageData))
             {
-                MelonLogger.Msg("Card texture loaded successfully.");
                 return tex;
             }
             else
