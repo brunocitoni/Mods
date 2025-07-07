@@ -6,6 +6,7 @@ using MelonLoader.Utils;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
 using UnityEngine;
@@ -26,6 +27,10 @@ namespace GamblerProfession
     public class GamblerProfession : ProfessionBase
     {
         int level = 1;
+        List<Dictionary<PlayerAttributes, int>> possibleAttributes = new();
+        float[] weights;
+        Dictionary<PlayerAttributes, int> appliedToPlayer;
+        Dictionary<PlayerAttributes, int> appliedToEnemy;
 
         public override void Initialize()
         {
@@ -39,16 +44,14 @@ namespace GamblerProfession
             typeof(DoubleRoll).AssemblyQualifiedName,
             "ChaosStrike",
             "ChaosStrike",
-            "ChaosStrike",
-            "ChaosStrike",
             "Pickpocket",
             "LastChance",
-            "ChaosPrayer",
-            "ElementalSurge"
-
+            "ChaosPrayer"
             };
+
             this.internalName = typeof(GamblerProfession).AssemblyQualifiedName;
             base.Initialize();
+            InitDictionaryAndWeights();
         }
 
         public override void AddDungeonActions(DungeonPlayer d)
@@ -170,13 +173,13 @@ namespace GamblerProfession
             int x = 0;
             LevelUpRewardType t = LevelUpRewardType.CARD;
             string s = string.Empty;
-            if (targetLevel == 4)
+            if (targetLevel == 7)
             {
-                s = "Card";
+                s = typeof(CoinToss).AssemblyQualifiedName;
                 t = LevelUpRewardType.SPECIAL;
                 x = 1;
             }
-            else if (targetLevel == 7)
+            else if (targetLevel == 4)
             {
                 s = "Card";
                 t = LevelUpRewardType.SPECIAL;
@@ -190,7 +193,7 @@ namespace GamblerProfession
             }
             else if (targetLevel == 2)
             {
-                s = typeof(CombatAbilityCoinToss).AssemblyQualifiedName;
+                s = typeof(CombatAbilityGamble).AssemblyQualifiedName;
                 t = LevelUpRewardType.ACTION;
                 x = 1;
             }
@@ -206,34 +209,28 @@ namespace GamblerProfession
         }
 
         // TODO
-        public override LevelUpReward FixedBonus(int targetLevel)
-        {
-            return (targetLevel != 3) ? null : new LevelUpReward("Action", 1, LevelUpRewardType.SPECIAL, this.dungeon);
-        }
-
-        // TODO
         public override List<string> RandomCards(int targetLevel)
         {
             return new List<string>(new string[]
             {
             "Jab",
-            "Circle",
             "Meditation",
             "InnerStrength",
             "Study",
-            "Focus",
+            typeof(DoubleRoll).AssemblyQualifiedName,
             "LastChance",
             "Slice",
             "Dice",
             "Backstab",
-            "Fly"
+            "Fly",
+            "ElementalSurge"
             });
         }
 
         // TODO
         public virtual void TieredCards(List<string> l, int cardTier)
         {
-            this.WizardCards(l, cardTier);
+            this.AttackCards(l, cardTier);
         }
 
         // TODO
@@ -275,96 +272,211 @@ namespace GamblerProfession
             return (int)Math.Max(c.thief, c.warrior);
         }
 
+        private void InitDictionaryAndWeights()
+        {
+            possibleAttributes.Add(new Dictionary<PlayerAttributes, int> { { PlayerAttributes.PHYS_IMMUNE, 1 } });
+            possibleAttributes.Add(new Dictionary<PlayerAttributes, int> { { PlayerAttributes.REFLECT, level * 2 } });
+            possibleAttributes.Add(new Dictionary<PlayerAttributes, int> { { PlayerAttributes.PENANCE, level } });
+            possibleAttributes.Add(new Dictionary<PlayerAttributes, int> { { PlayerAttributes.WEAKNESS, level } });
+            possibleAttributes.Add(new Dictionary<PlayerAttributes, int> { { PlayerAttributes.EARTH_IMMUNE, 1 } });
+            possibleAttributes.Add(new Dictionary<PlayerAttributes, int> { { PlayerAttributes.WATER_IMMUNE, 1 } });
+            possibleAttributes.Add(new Dictionary<PlayerAttributes, int> { { PlayerAttributes.HEALTH_REGEN, level } });
+            possibleAttributes.Add(new Dictionary<PlayerAttributes, int> { { PlayerAttributes.FIRE_VULN, 1 } });
+            possibleAttributes.Add(new Dictionary<PlayerAttributes, int> { { PlayerAttributes.AIR_VULN, 1 } });
+            possibleAttributes.Add(new Dictionary<PlayerAttributes, int> { { PlayerAttributes.SHIELD, level * 2 } });
+            possibleAttributes.Add(new Dictionary<PlayerAttributes, int> { { PlayerAttributes.EARTH_VULN, 1 } });
+            possibleAttributes.Add(new Dictionary<PlayerAttributes, int> { { PlayerAttributes.WATER_VULN, 1 } });
+            possibleAttributes.Add(new Dictionary<PlayerAttributes, int> { { PlayerAttributes.PHYS_RESIST, 1 } });
+            possibleAttributes.Add(new Dictionary<PlayerAttributes, int> { { PlayerAttributes.FIRE_IMMUNE, 1 } });
+            possibleAttributes.Add(new Dictionary<PlayerAttributes, int> { { PlayerAttributes.AIR_IMMUNE, 1 } });
+            possibleAttributes.Add(new Dictionary<PlayerAttributes, int> { { PlayerAttributes.POISON, level } });
+            possibleAttributes.Add(new Dictionary<PlayerAttributes, int> { { PlayerAttributes.DODGE, level * 5 } });
+            possibleAttributes.Add(new Dictionary<PlayerAttributes, int> { { PlayerAttributes.SUPER_FIRE_SHIELD, level } });
+            possibleAttributes.Add(new Dictionary<PlayerAttributes, int> { { PlayerAttributes.BASE_CHILLED, level % 3 } });
+            possibleAttributes.Add(new Dictionary<PlayerAttributes, int> { { PlayerAttributes.BERSERK, level % 5 } });
+
+            // create int of weights
+            weights = new float[20]
+            {
+                0.000267f,
+                0.001213f,
+                0.004573f,
+                0.013304f,
+                0.031544f,
+                0.064759f,
+                0.112209f,
+                0.162336f,
+                0.199471f,
+                0.213245f,
+                0.199471f,
+                0.162336f,
+                0.112209f,
+                0.064759f,
+                0.031544f,
+                0.013304f,
+                0.004573f,
+                0.001213f,
+                0.000267f,
+                0.000015f
+            };
+        }
+
         // TODO
         public override void CombatApplyToPlayer(Player p)
         {
-            List<PlayerAttributes> possiblePlayerAttributes = new();
-            List<PlayerAttributes> possibleEnemyAttributes = new();
+            ApplyNewBuff(p);
+        }
 
-            // general ones go here
-            possiblePlayerAttributes.Add(PlayerAttributes.SHIELD);
+        void RemoveAppliedBuff(Player p)
+        {
+            p.AddToAttribute(
+                appliedToPlayer.First().Key,
+                -appliedToPlayer.First().Value
+            );
 
-            possiblePlayerAttributes.Add(PlayerAttributes.HEALTH_REGEN);
+            p.Enemy().AddToAttribute(
+                appliedToEnemy.First().Key,
+                -appliedToEnemy.First().Value
+            );
+        }
 
-            // level dependant ones go here
-            int playerLevel = level;
+        void ApplyNewBuff(Player p)
+        {
+            int playerBuffIndex = GetRandomWeightedIndex(weights);
+            int enemyBuffIndex = GetRandomWeightedIndex(weights);
 
-            for (int currentLevel = 2; currentLevel <= playerLevel && currentLevel <= 10; currentLevel++)
+            MelonLogger.Msg("index player buff : " + playerBuffIndex);
+            if(playerBuffIndex > possibleAttributes.Count)
+                MelonLogger.Msg("SOMETHING WENT WRONG WITH playerBuffIndex: " + playerBuffIndex);
+            p.AddToAttribute(
+                possibleAttributes[playerBuffIndex].First().Key,
+                possibleAttributes[playerBuffIndex].First().Value
+            );
+
+            MelonLogger.Msg("assigned player buff : " + possibleAttributes[playerBuffIndex].First().Key);
+            appliedToPlayer = new(possibleAttributes[playerBuffIndex]);
+
+            if (enemyBuffIndex > possibleAttributes.Count)
+                MelonLogger.Msg("SOMETHING WENT WRONG WITH enemyBuffIndex: " + enemyBuffIndex);
+
+            MelonLogger.Msg("index enemy buff : " + enemyBuffIndex);
+            p.Enemy().AddToAttribute(
+                possibleAttributes[enemyBuffIndex].First().Key,
+                possibleAttributes[enemyBuffIndex].First().Value
+            );
+            MelonLogger.Msg("assigned enemy buff : " + possibleAttributes[enemyBuffIndex].First().Key);
+            appliedToEnemy = new(possibleAttributes[enemyBuffIndex]);
+        }
+
+        public void RerollBuffs(Player p)
+        {
+            RemoveAppliedBuff(p);
+            ApplyNewBuff(p);
+        }
+
+        int GetRandomWeightedIndex(float[] weights)
+        {
+            if (weights == null || weights.Length == 0) return -1;
+
+            float w;
+            float t = 0;
+            int i;
+            for (i = 0; i < weights.Length; i++)
             {
-                switch (currentLevel)
+                w = weights[i];
+
+                if (float.IsPositiveInfinity(w))
                 {
-                    case 2:
-                        possiblePlayerAttributes.Add(PlayerAttributes.AIR_VULN);
-                        possiblePlayerAttributes.Add(PlayerAttributes.EARTH_VULN);
-                        possiblePlayerAttributes.Add(PlayerAttributes.FIRE_VULN);
-                        possiblePlayerAttributes.Add(PlayerAttributes.WATER_VULN);
-                        break;
-                    case 3:
-                        possiblePlayerAttributes.Add(PlayerAttributes.PHYS_RESIST);
-                        possiblePlayerAttributes.Add(PlayerAttributes.ELEMENTAL_RESIST);
-
-                        break;
-                    case 4:
-                        break;
-                    case 5:
-                        possiblePlayerAttributes.Add(PlayerAttributes.CRUEL);
-                        possiblePlayerAttributes.Add(PlayerAttributes.POISON);
-                        possiblePlayerAttributes.Add(PlayerAttributes.MIND_IMMUNE);
-                        break;
-                    case 6:
-                        possiblePlayerAttributes.Add(PlayerAttributes.DODGE);
-                        possiblePlayerAttributes.Add(PlayerAttributes.PERM_NEGATE_FIRST);
-                        possiblePlayerAttributes.Add(PlayerAttributes.REFLECT);
-                        break;
-                    case 7:
-                        possiblePlayerAttributes.Add(PlayerAttributes.DOUBLE_ATTACK);
-                        possiblePlayerAttributes.Add(PlayerAttributes.INVISIBLE);
-                        break;
-                    case 8:
-                        possiblePlayerAttributes.Add(PlayerAttributes.RANDOM_IMMUNITY);
-                        possiblePlayerAttributes.Add(PlayerAttributes.EARTH_IMMUNE);
-                        possiblePlayerAttributes.Add(PlayerAttributes.FIRE_IMMUNE);
-                        possiblePlayerAttributes.Add(PlayerAttributes.WATER_IMMUNE);
-                        possiblePlayerAttributes.Add(PlayerAttributes.AIR_IMMUNE);
-                        break;
-                    case 9:
-                        possiblePlayerAttributes.Add(PlayerAttributes.FLUID);
-
-                        break;
-                    case 10:
-                        possiblePlayerAttributes.Add(PlayerAttributes.DOUBLE_DAMAGE);
-                        break;
+                    return i;
+                }
+                else if (w >= 0f && !float.IsNaN(w))
+                {
+                    t += weights[i];
                 }
             }
 
-            possibleEnemyAttributes = new(possiblePlayerAttributes);
-            possibleEnemyAttributes.Add(PlayerAttributes.NEGATEFIRST);
+            float r = UnityEngine.Random.value;
+            float s = 0f;
 
-            int counter = 1;
-            if (level >= 4)
+            for (i = 0; i < weights.Length; i++)
             {
-                counter = 2;
+                w = weights[i];
+                if (float.IsNaN(w) || w <= 0f) continue;
+
+                s += w / t;
+                if (s >= r) return i;
             }
 
-            for (int i = 0; i < counter; i++)
-            {
+            return -1;
+        }
+    }
 
-                PlayerAttributes playerBuff = possiblePlayerAttributes[p.game.InGameRandomRange(0, possiblePlayerAttributes.Count - 1)];
-
-                MelonLogger.Msg("Adding " + playerBuff + " for value " + level + " to player");
-                p.AddToAttribute(playerBuff, level);
-                possiblePlayerAttributes.Remove(playerBuff);
-
-
-                PlayerAttributes enemyBuff = possibleEnemyAttributes[p.game.InGameRandomRange(0, possibleEnemyAttributes.Count - 1)];
-
-                MelonLogger.Msg("Adding " + enemyBuff + " for value " + level + " to enemy");
-                p.Enemy().AddToAttribute(enemyBuff, level);
-                possibleEnemyAttributes.Remove(enemyBuff);
-            }
-
+    public class CombatAbilityGamble: CombatAbility
+    {
+        ~CombatAbilityGamble()
+        {
+            MelonLogger.Msg("CombatAbilityGamble destroyed.");
         }
 
+        public override void Initialize()
+        {
+            base.Initialize();
+            this.cooldown = 0;
+            this.currentCooldown = 0;
+        }
+
+        // Token: 0x06000F13 RID: 3859 RVA: 0x00009D44 File Offset: 0x00007F44
+        public override Texture GetTexture()
+        {
+            return (Texture)Resources.Load("Textures/CombatAbilityDesperatePrayer", typeof(Texture));
+        }
+
+        // Token: 0x06000F14 RID: 3860 RVA: 0x00009D5F File Offset: 0x00007F5F
+        public override string Description()
+        {
+            return "Spend 5 gold to reroll buffs on you and the enemy";
+        }
+
+        // Token: 0x06000F15 RID: 3861 RVA: 0x00009D66 File Offset: 0x00007F66
+        public override string Name()
+        {
+            return "Gamble!";
+        }
+
+        // Token: 0x06000F16 RID: 3862 RVA: 0x00009D6D File Offset: 0x00007F6D
+        public override void DoMe(Player p)
+        {
+            if (this.dungeon.currentCombat.currentDungeon != null)
+            {
+                if (this.dungeon.currentCombat.currentDungeon.player.gold >= 5)
+                {
+                    this.dungeon.currentCombat.currentDungeon.player.gold -= 5;
+                    // TODO invoke reroll buffs
+                    GamblerProfession gambler = this.dungeon.player.profession as GamblerProfession;
+                    gambler.RerollBuffs(p);
+                }
+                else
+                {
+                    MelonLogger.Msg("could not spend the money");
+                }
+            }
+            else
+            {
+                MelonLogger.Msg("this.dungeon.currentCombat.currentDungeon was null");
+            }
+        }
+
+        // Token: 0x06000F17 RID: 3863 RVA: 0x000533D4 File Offset: 0x000515D4
+        public override bool IsValid()
+        {
+            return (this.dungeon == null || this.dungeon.currentCombat == null || this.dungeon.currentCombat.me == null || this.dungeon.currentCombat.currentDungeon.player.gold >= 5) && this.currentCooldown == 0;
+        }
+
+        // Token: 0x06000F18 RID: 3864 RVA: 0x00009D7D File Offset: 0x00007F7D
+        public override string FailText()
+        {
+            return "Not enough coins";
+        }
     }
 
     public class CombatAbilityCoinToss : CombatAbility
