@@ -1,5 +1,6 @@
-﻿using HarmonyLib;
+using HarmonyLib;
 using MelonLoader;
+using System.Reflection;
 using UnityEngine;
 using static MelonLoader.MelonLogger;
 
@@ -21,6 +22,7 @@ namespace KeyboardMovement
     {
         private static MovementListener _instance;
         public static DungeonBoardPhysical boardPhysical;
+        public static DungeonPlayerPhysical playerPhysical;
 
         public static void Initialize()
         {
@@ -48,6 +50,15 @@ namespace KeyboardMovement
                 MelonLogger.Msg("Could not assign the board");
         }
 
+        public static void AssignDungeonPlayerPhysical(DungeonPlayerPhysical _player)
+        {
+            playerPhysical = _player;
+            if (playerPhysical != null)
+                MelonLogger.Msg("Player assigned as " + playerPhysical);
+            else
+                MelonLogger.Msg("Could not assign the player");
+        }
+
         public void Update()
         {
             Tile toMoveTo = null;
@@ -70,7 +81,45 @@ namespace KeyboardMovement
             }
 
             if (toMoveTo != null)
+            {
+            // TODO need to check here if any windows are open and prevent movement
                 boardPhysical.board.TryMoveTo(toMoveTo);
+                return;
+            }
+
+// to be reviewed
+            if (Input.GetKeyUp(KeyCode.Space))
+            {
+                MelonLogger.Msg("Pressed space");
+
+                if (playerPhysical.miniDisplay == null)
+                {
+                    MelonLogger.Msg("No miniDisplay found");
+                    return;
+                }
+
+                // Try to find any ShopDialogueButton inside miniDisplay
+                ShopDialogueObject[] children = playerPhysical.miniDisplay.GetComponentsInChildren<ShopDialogueButton>();
+
+                if (children == null || children.Length == 0)
+                {
+                    MelonLogger.Msg("miniDisplay has no children with ShopDialogueButton");
+                    return;
+                }
+
+                foreach (var child in children)
+                {
+                    if (child is ShopDialogueButton button)
+                    {
+                        MelonLogger.Msg("Found ShopDialogueButton");
+
+                        button.button.callback.Invoke();
+
+                        break; // stop after first
+                    }
+                }
+
+            }
         }
     }
 
@@ -81,6 +130,16 @@ namespace KeyboardMovement
         {
             MovementListener.Initialize();
             MovementListener.AssignBoard(__instance);
+        }
+    }
+
+    [HarmonyPatch(typeof(DungeonPlayerPhysical), "Initialize")]
+    public static class PatchDungeonPlayerPhysicalInit
+    {
+        public static void Postfix(DungeonPlayerPhysical __instance)
+        {
+            MovementListener.Initialize();
+            MovementListener.AssignDungeonPlayerPhysical(__instance);
         }
     }
 }
