@@ -61,33 +61,36 @@ namespace KeyboardMovement
 
         public void Update()
         {
+            if (boardPhysical == null) return;
+
             Tile toMoveTo = null;
 
-            if (Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.RightArrow))
+            if (!boardPhysical.board.game.activeShop) // if a shop window is not active we can move around the dungeon
             {
-                toMoveTo = boardPhysical.board.PlayerTile().Right();
-            }
-            if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.LeftArrow))
-            {
-                toMoveTo = boardPhysical.board.PlayerTile().Left();
-            }
-            if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.UpArrow))
-            {
-                toMoveTo = boardPhysical.board.PlayerTile().Up();
-            }
-            if (Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.DownArrow))
-            {
-                toMoveTo = boardPhysical.board.PlayerTile().Down();
+                if (Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.RightArrow))
+                {
+                    toMoveTo = boardPhysical.board.PlayerTile().Right();
+                }
+                if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.LeftArrow))
+                {
+                    toMoveTo = boardPhysical.board.PlayerTile().Left();
+                }
+                if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.UpArrow))
+                {
+                    toMoveTo = boardPhysical.board.PlayerTile().Up();
+                }
+                if (Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.DownArrow))
+                {
+                    toMoveTo = boardPhysical.board.PlayerTile().Down();
+                }
+
+                if (toMoveTo != null)
+                {
+                    boardPhysical.board.TryMoveTo(toMoveTo);
+                    return;
+                }
             }
 
-            if (toMoveTo != null)
-            {
-            // TODO need to check here if any windows are open and prevent movement
-                boardPhysical.board.TryMoveTo(toMoveTo);
-                return;
-            }
-
-// to be reviewed
             if (Input.GetKeyUp(KeyCode.Space))
             {
                 MelonLogger.Msg("Pressed space");
@@ -99,26 +102,10 @@ namespace KeyboardMovement
                 }
 
                 // Try to find any ShopDialogueButton inside miniDisplay
-                ShopDialogueObject[] children = playerPhysical.miniDisplay.GetComponentsInChildren<ShopDialogueButton>();
+                ShopDialogueButton[] buttons = playerPhysical.miniDisplay.GetComponentsInChildren<ShopDialogueButton>();
 
-                if (children == null || children.Length == 0)
-                {
-                    MelonLogger.Msg("miniDisplay has no children with ShopDialogueButton");
-                    return;
-                }
-
-                foreach (var child in children)
-                {
-                    if (child is ShopDialogueButton button)
-                    {
-                        MelonLogger.Msg("Found ShopDialogueButton");
-
-                        button.button.callback.Invoke();
-
-                        break; // stop after first
-                    }
-                }
-
+                buttons[0].button.OnMouseDown();
+                buttons[0].button.OnMouseUp();
             }
         }
     }
