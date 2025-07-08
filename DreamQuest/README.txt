@@ -11,8 +11,6 @@ If not, download it here: https://melonwiki.xyz
 
 🎯 Quality of Life (QoL)
 
-Improvements and fixes for a smoother gameplay experience:
-
 [DreamQuestFixes.dll]
 - 🧪 Poison damage now pierces when appropriate.
 - 💰 Treasure chests reward a few coins per skipped card.
@@ -20,19 +18,18 @@ Improvements and fixes for a smoother gameplay experience:
 
 [KeyboardMovement.dll]
 - 🎮 Enables dungeon movement using WASD or arrow keys.
+- 🎮 Enables opening dungeon features with the Space key.
 - 🚧 More keyboard features planned for future updates.
 
 [AutoEndBattle.dll]
-- ⏩ Automatically closes post-battle treasure screens — no more extra clicks.
+- ⏩ Automatically opens post-battle treasure and closes battle screen
 
 ------------------------------------------------------------
 
 🧩 Custom Content
 
-Add new classes and features to the game:
-
 [CustomContentLoader.dll]
 - 📦 Required to enable any custom content.
 
 [GamblerClass.dll] (Work in Progress)
-- 🎲 Adds a new class focused on randomness and risk-taking.
+- 🎲 Adds a new class focused on randomness and buffs/debuffs.
