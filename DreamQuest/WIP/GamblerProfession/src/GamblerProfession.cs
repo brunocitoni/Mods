@@ -112,7 +112,7 @@ namespace GamblerProfession
 
         public override string AbilityDescription()
         {
-            return "Gamble: You and the enemy start every combat with a random buff.";
+            return "Gamble: You start every combat with a random buff.";
         }
 
         public override string[] GetPossibleNames()
@@ -174,11 +174,11 @@ namespace GamblerProfession
             string s = string.Empty;
             if (targetLevel == 7)
             {
-                s = typeof(CoinToss).AssemblyQualifiedName;
+                s = typeof(CombatAbilityGamble).AssemblyQualifiedName;
                 t = LevelUpRewardType.SPECIAL;
                 x = 1;
             }
-            else if (targetLevel == 4)
+            else if (targetLevel == 5)
             {
                 s = "Card";
                 t = LevelUpRewardType.SPECIAL;
@@ -190,16 +190,10 @@ namespace GamblerProfession
                 t = LevelUpRewardType.SPECIAL;
                 x = 1;
             }
-            else if (targetLevel == 2)
+            else if (targetLevel == 3)
             {
-                s = typeof(CombatAbilityGamble).AssemblyQualifiedName;
+                s = typeof(CombatAbilityZanmato).AssemblyQualifiedName;
                 t = LevelUpRewardType.ACTION;
-                x = 1;
-            }
-            else if (targetLevel == 6)
-            {
-                s = "Talent";
-                t = LevelUpRewardType.SPECIAL;
                 x = 1;
             }
 
@@ -285,13 +279,13 @@ namespace GamblerProfession
             possibleAttributes.Add(new Dictionary<PlayerAttributes, int> { { PlayerAttributes.SHIELD, level * 2 } });
             possibleAttributes.Add(new Dictionary<PlayerAttributes, int> { { PlayerAttributes.EARTH_VULN, 1 } });
             possibleAttributes.Add(new Dictionary<PlayerAttributes, int> { { PlayerAttributes.WATER_VULN, 1 } });
+            possibleAttributes.Add(new Dictionary<PlayerAttributes, int> { { PlayerAttributes.BASE_CHILLED, level % 3 } });
             possibleAttributes.Add(new Dictionary<PlayerAttributes, int> { { PlayerAttributes.PHYS_RESIST, 1 } });
             possibleAttributes.Add(new Dictionary<PlayerAttributes, int> { { PlayerAttributes.FIRE_IMMUNE, 1 } });
             possibleAttributes.Add(new Dictionary<PlayerAttributes, int> { { PlayerAttributes.AIR_IMMUNE, 1 } });
             possibleAttributes.Add(new Dictionary<PlayerAttributes, int> { { PlayerAttributes.POISON, level } });
             possibleAttributes.Add(new Dictionary<PlayerAttributes, int> { { PlayerAttributes.DODGE, level * 5 } });
             possibleAttributes.Add(new Dictionary<PlayerAttributes, int> { { PlayerAttributes.SUPER_FIRE_SHIELD, level } });
-            possibleAttributes.Add(new Dictionary<PlayerAttributes, int> { { PlayerAttributes.BASE_CHILLED, level % 3 } });
             possibleAttributes.Add(new Dictionary<PlayerAttributes, int> { { PlayerAttributes.BERSERK, level % 5 } });
 
             weights = new float[19]
@@ -333,10 +327,11 @@ namespace GamblerProfession
                 -appliedToPlayer.First().Value
             );
 
+            /*
             p.Enemy().AddToAttribute(
                 appliedToEnemy.First().Key,
                 -appliedToEnemy.First().Value
-            );
+            );*/
         }
 
         void ApplyNewBuff(Player p)
@@ -355,6 +350,7 @@ namespace GamblerProfession
             MelonLogger.Msg("assigned player buff : " + possibleAttributes[playerBuffIndex].First().Key);
             appliedToPlayer = new(possibleAttributes[playerBuffIndex]);
 
+            /*
             if (enemyBuffIndex > possibleAttributes.Count)
                 MelonLogger.Msg("SOMETHING WENT WRONG WITH enemyBuffIndex: " + enemyBuffIndex);
 
@@ -365,6 +361,7 @@ namespace GamblerProfession
             );
             MelonLogger.Msg("assigned enemy buff : " + possibleAttributes[enemyBuffIndex].First().Key);
             appliedToEnemy = new(possibleAttributes[enemyBuffIndex]);
+            */
         }
 
         public void RerollBuffs(Player p)
@@ -477,18 +474,23 @@ namespace GamblerProfession
         }
     }
 
-    public class CombatAbilityCoinToss : CombatAbility
+    public class CombatAbilityZanmato : CombatAbility
     {
-        ~CombatAbilityCoinToss()
+        ~CombatAbilityZanmato()
         {
-            MelonLogger.Msg("CombatAbilityCoinToss destroyed.");
+            MelonLogger.Msg("CombatAbilityZanmato destroyed.");
         }
+
+        static int count;
+        static int coinCost;
 
         public override void Initialize()
         {
             base.Initialize();
-            this.cooldown = 2;
+            this.cooldown = 0;
             this.currentCooldown = 0;
+            coinCost = 20;
+            count = 0;
         }
 
         // Token: 0x06000F13 RID: 3859 RVA: 0x00009D44 File Offset: 0x00007F44
@@ -500,13 +502,13 @@ namespace GamblerProfession
         // Token: 0x06000F14 RID: 3860 RVA: 0x00009D5F File Offset: 0x00007F5F
         public override string Description()
         {
-            return "Use all your gold to deal between 1 and total amount in piercing damage";
+            return "Pay 20 coins. Deal random piercing damage. Chances for high damage increase the more this skill is used.";
         }
 
         // Token: 0x06000F15 RID: 3861 RVA: 0x00009D66 File Offset: 0x00007F66
         public override string Name()
         {
-            return "Coin Toss";
+            return "Zanmato";
         }
 
         // Token: 0x06000F16 RID: 3862 RVA: 0x00009D6D File Offset: 0x00007F6D
@@ -514,27 +516,28 @@ namespace GamblerProfession
         {
             if (this.dungeon.currentCombat.currentDungeon != null)
             {
-                if (this.dungeon.currentCombat.currentDungeon.player.gold > 0)
+                if (this.dungeon.currentCombat.currentDungeon.player.gold >= coinCost)
                 {
-                    int num = this.dungeon.currentCombat.currentDungeon.player.gold;
-                    this.dungeon.currentCombat.currentDungeon.player.gold = 0;
-                    p.DealDamage(UnityEngine.Random.Range(1, num), DamageTypes.RAW);
+                    this.dungeon.currentCombat.currentDungeon.player.gold -= coinCost;
+                    p.DealDamage(UnityEngine.Random.Range(count*2, 5+(count*3)), DamageTypes.RAW);
                 }
                 else
                 {
-                    MelonLogger.Msg("could not spend the money");
+                    MelonLogger.Msg("Could not spend the money");
                 }
             }
             else
             {
                 MelonLogger.Msg("this.dungeon.currentCombat.currentDungeon was null");
             }
+
+            count++;
         }
 
         // Token: 0x06000F17 RID: 3863 RVA: 0x000533D4 File Offset: 0x000515D4
         public override bool IsValid()
         {
-            return (this.dungeon == null || this.dungeon.currentCombat == null || this.dungeon.currentCombat.me == null || this.dungeon.currentCombat.currentDungeon.player.gold > 0) && this.currentCooldown == 0;
+            return (this.dungeon == null || this.dungeon.currentCombat == null || this.dungeon.currentCombat.me == null || this.dungeon.currentCombat.currentDungeon.player.gold >= 20) && this.currentCooldown == 0;
         }
 
         // Token: 0x06000F18 RID: 3864 RVA: 0x00009D7D File Offset: 0x00007F7D

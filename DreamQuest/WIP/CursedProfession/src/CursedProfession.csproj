@@ -1,0 +1,75 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>net35</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>disable</Nullable>
+		<RootNamespace>CursedProfession</RootNamespace>
+		<LangVersion>default</LangVersion>
+		<IsPackable>false</IsPackable>
+		<AssemblyVersion>1.0.0.0</AssemblyVersion>
+		<FileVersion>1.0.0.0</FileVersion>
+		<NeutralLanguage>en-US</NeutralLanguage>
+		<AssemblyName>CursedProfession</AssemblyName>
+		<LangVersion>latest</LangVersion>
+		<ImplicitUsings>disable</ImplicitUsings>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Reference Include="Assembly-CSharp-firstpass">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\Dream Quest\Windows64_Data\Managed\Assembly-CSharp-firstpass.dll</HintPath>
+		</Reference>
+		<Reference Include="Assembly-CSharp">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\Dream Quest\Windows64_Data\Managed\Assembly-CSharp.dll</HintPath>
+		</Reference>
+		<Reference Include="Assembly-UnityScript">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\Dream Quest\Windows64_Data\Managed\Assembly-UnityScript.dll</HintPath>
+		</Reference>
+		<Reference Include="Boo.Lang">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\Dream Quest\Windows64_Data\Managed\Boo.Lang.dll</HintPath>
+		</Reference>
+		<Reference Include="U3DXTCore">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\Dream Quest\Windows64_Data\Managed\U3DXTCore.dll</HintPath>
+		</Reference>
+		<Reference Include="U3DXTCoreExtras">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\Dream Quest\Windows64_Data\Managed\U3DXTCoreExtras.dll</HintPath>
+		</Reference>
+		<Reference Include="U3DXTCoreExtras_HL">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\Dream Quest\Windows64_Data\Managed\U3DXTCoreExtras_HL.dll</HintPath>
+		</Reference>
+		<Reference Include="U3DXTCore_HL">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\Dream Quest\Windows64_Data\Managed\U3DXTCore_HL.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\Dream Quest\Windows64_Data\Managed\UnityEngine.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.UI">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\Dream Quest\Windows64_Data\Managed\UnityEngine.UI.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityScript.Lang">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\Dream Quest\Windows64_Data\Managed\UnityScript.Lang.dll</HintPath>
+		</Reference>
+		<Reference Include="MelonLoader">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\Dream Quest\MelonLoader\net35\MelonLoader.dll</HintPath>
+		</Reference>
+		<Reference Include="0Harmony">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\Dream Quest\MelonLoader\net35\0Harmony.dll</HintPath>
+		</Reference>
+		<Reference Include="ValueTupleBridge">
+			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\Dream Quest\MelonLoader\net35\ValueTupleBridge.dll</HintPath>
+		</Reference>
+
+	</ItemGroup>
+
+	<PropertyGroup>
+		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+		<EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Compile Include="CursedProfession.cs" />
+	</ItemGroup>
+	
+	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
+		<Exec Command="COPY &quot;$(TargetPath)&quot; &quot;C:\Program Files (x86)\Steam\steamapps\common\Dream Quest\Mods&quot;" />
+	</Target>
+</Project>
