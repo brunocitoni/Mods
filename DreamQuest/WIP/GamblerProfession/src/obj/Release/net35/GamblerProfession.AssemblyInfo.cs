@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GamblerProfession")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+17a5097c339f4aab24c15f6c1d22d8cafaf015bd")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7e75b0d7af403d7de985b196a8f79459b4ded6e3")]
 [assembly: System.Reflection.AssemblyProductAttribute("GamblerProfession")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GamblerProfession")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

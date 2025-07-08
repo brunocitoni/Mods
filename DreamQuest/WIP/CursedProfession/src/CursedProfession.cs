@@ -44,8 +44,21 @@ namespace CursedProfession
             this.internalName = typeof(CursedProfession).AssemblyQualifiedName;
             base.Initialize();
 
+            //RemoveAttack2();
             CountDeckCurses();
         }
+
+        
+        // TODO
+        private void RemoveAttack2()
+        {
+            foreach (var card in this.deck)
+            {
+                this.game.currentDungeon.player.RemoveCardFromDeck("Attack2");
+                this.game.currentDungeon.player.RemoveCardFromDeck("Attack2");
+            }
+        }
+        
 
         private void CountDeckCurses()
         {
