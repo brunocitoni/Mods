@@ -31,5 +31,8 @@ If not, download it here: https://melonwiki.xyz
 [CustomContentLoader.dll]
 - 📦 Required to enable any custom content.
 
-[GamblerClass.dll] (Work in Progress)
+[GamblerProfession] (Work in Progress)
 - 🎲 Adds a new class focused on randomness and buffs/debuffs.
+
+[CursedProfession] (Work in Progress)
+- Adds a new class focused on curses and magic.
