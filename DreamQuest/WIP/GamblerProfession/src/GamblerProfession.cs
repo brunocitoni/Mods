@@ -549,7 +549,6 @@ namespace GamblerProfession
 
     #endregion
     #region CARDS
-
     public class DoubleRoll : AttackCard
     {
 
