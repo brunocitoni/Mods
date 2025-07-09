@@ -30,6 +30,9 @@
 		<Reference Include="Boo.Lang">
 			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\Dream Quest\Windows64_Data\Managed\Boo.Lang.dll</HintPath>
 		</Reference>
+		<Reference Include="CoroutineRunner">
+		  <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Dream Quest\Mods\CoroutineRunner.dll</HintPath>
+		</Reference>
 		<Reference Include="U3DXTCore">
 			<HintPath>C:\Program Files (x86)\Steam\steamapps\common\Dream Quest\Windows64_Data\Managed\U3DXTCore.dll</HintPath>
 		</Reference>

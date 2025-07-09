@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("KeyboardMovement")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+de1b0cf770c83933ef283c40a8bf29f7a0ddcb57")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+332b347ced33daefa1c1c3c9273e0cba35ecb021")]
 [assembly: System.Reflection.AssemblyProductAttribute("KeyboardMovement")]
 [assembly: System.Reflection.AssemblyTitleAttribute("KeyboardMovement")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

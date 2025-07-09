@@ -34,11 +34,11 @@ namespace GamblerProfession
 
         public override void Initialize()
         {
-            this.health = 12;
+            this.health = 16;
             this.mana = 0;
             this.cards = 2;
             this.actions = 1;
-            this.gold = 5;
+            this.gold = 10;
             this.deck = new string[]
             {
             typeof(DoubleRoll).AssemblyQualifiedName,
@@ -112,7 +112,7 @@ namespace GamblerProfession
 
         public override string AbilityDescription()
         {
-            return "Gamble: You start every combat with a random buff.";
+            return "Gamble: You and the enemy start every combat with a random buff.";
         }
 
         public override string[] GetPossibleNames()
@@ -327,11 +327,11 @@ namespace GamblerProfession
                 -appliedToPlayer.First().Value
             );
 
-            /*
+            
             p.Enemy().AddToAttribute(
                 appliedToEnemy.First().Key,
                 -appliedToEnemy.First().Value
-            );*/
+            );
         }
 
         void ApplyNewBuff(Player p)
@@ -350,7 +350,7 @@ namespace GamblerProfession
             MelonLogger.Msg("assigned player buff : " + possibleAttributes[playerBuffIndex].First().Key);
             appliedToPlayer = new(possibleAttributes[playerBuffIndex]);
 
-            /*
+            
             if (enemyBuffIndex > possibleAttributes.Count)
                 MelonLogger.Msg("SOMETHING WENT WRONG WITH enemyBuffIndex: " + enemyBuffIndex);
 
@@ -361,7 +361,7 @@ namespace GamblerProfession
             );
             MelonLogger.Msg("assigned enemy buff : " + possibleAttributes[enemyBuffIndex].First().Key);
             appliedToEnemy = new(possibleAttributes[enemyBuffIndex]);
-            */
+            
         }
 
         public void RerollBuffs(Player p)
@@ -446,19 +446,26 @@ namespace GamblerProfession
                 if (this.dungeon.currentCombat.currentDungeon.player.gold >= 5)
                 {
                     this.dungeon.currentCombat.currentDungeon.player.gold -= 5;
-                    // TODO invoke reroll buffs
+
+                    p.game.SetTopMessage(this.dungeon.currentCombat.currentDungeon.player.gold + " gold left!");
+
                     GamblerProfession gambler = this.dungeon.player.profession as GamblerProfession;
                     gambler.RerollBuffs(p);
                 }
                 else
                 {
-                    MelonLogger.Msg("could not spend the money");
+                    p.game.SetTopMessage("Not enough gold!");
                 }
             }
             else
             {
                 MelonLogger.Msg("this.dungeon.currentCombat.currentDungeon was null");
             }
+
+            CoroutineRunner.Instance?.RunAfterDelay(1f, () =>
+            {
+                p.game.DestroyTopMessage();
+            });
         }
 
         // Token: 0x06000F17 RID: 3863 RVA: 0x000533D4 File Offset: 0x000515D4
@@ -487,9 +494,9 @@ namespace GamblerProfession
         public override void Initialize()
         {
             base.Initialize();
-            this.cooldown = 0;
+            this.cooldown = 1;
             this.currentCooldown = 0;
-            coinCost = 20;
+            coinCost = 15;
             count = 0;
         }
 
@@ -502,7 +509,7 @@ namespace GamblerProfession
         // Token: 0x06000F14 RID: 3860 RVA: 0x00009D5F File Offset: 0x00007F5F
         public override string Description()
         {
-            return "Pay 20 coins. Deal random piercing damage. Chances for high damage increase the more this skill is used.";
+            return "Pay 15 coins. Deal random damage. Chances for high damage increase the more this skill is used.";
         }
 
         // Token: 0x06000F15 RID: 3861 RVA: 0x00009D66 File Offset: 0x00007F66
@@ -519,7 +526,8 @@ namespace GamblerProfession
                 if (this.dungeon.currentCombat.currentDungeon.player.gold >= coinCost)
                 {
                     this.dungeon.currentCombat.currentDungeon.player.gold -= coinCost;
-                    p.DealDamage(UnityEngine.Random.Range(count*2, 5+(count*3)), DamageTypes.RAW);
+                    p.game.SetTopMessage(this.dungeon.currentCombat.currentDungeon.player.gold + " gold left!");
+                    p.DealDamage(UnityEngine.Random.Range(1+(count*2), 5+(count*3)), DamageTypes.PHYSICAL);
                 }
                 else
                 {
@@ -532,6 +540,10 @@ namespace GamblerProfession
             }
 
             count++;
+            CoroutineRunner.Instance?.RunAfterDelay(1f, () =>
+            {
+                p.game.DestroyTopMessage();
+            });
         }
 
         // Token: 0x06000F17 RID: 3863 RVA: 0x000533D4 File Offset: 0x000515D4
@@ -572,7 +584,7 @@ namespace GamblerProfession
             this.internalName = typeof(DoubleRoll).AssemblyQualifiedName;
             this.cardName = "Double Roll";
             this.text = "Deal 1-6 @atk damage to you. Deal 1-6 damage to the opponent";
-            this.flavorText = "COULD GO YOUR WAY, COULD GO MINE. - Alan Partridge";
+            this.flavorText = "Could go your way, could go mine - Alan Partridge";
             this.cost = 0;
             this.goldCost = 20;
             this.manaCost = 0;

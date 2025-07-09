@@ -115,3 +115,4 @@ C:\Users\Bruno\Documents\GitHub\Mods\DreamQuest\WIP\GamblerProfession\src\obj\Re
 C:\Users\Bruno\Documents\GitHub\Mods\DreamQuest\WIP\GamblerProfession\src\obj\Release\net35\GamblerP.24E024A0.Up2Date
 C:\Users\Bruno\Documents\GitHub\Mods\DreamQuest\WIP\GamblerProfession\src\obj\Release\net35\GamblerProfession.dll
 C:\Users\Bruno\Documents\GitHub\Mods\DreamQuest\WIP\GamblerProfession\src\obj\Release\net35\GamblerProfession.pdb
+C:\Users\Bruno\Documents\GitHub\Mods\DreamQuest\WIP\GamblerProfession\src\bin\Release\net35\CoroutineRunner.dll

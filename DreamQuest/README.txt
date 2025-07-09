@@ -7,6 +7,16 @@ If not, download it here: https://melonwiki.xyz
 2. Download and extract the contents of the `assets` folder into the `UserData` folder inside the game's Steam directory.  
 3. Run the game.
 
+
+-----------------------------------------------------------
+Misc
+
+[CustomContentLoader.dll]
+- 📦 Required to enable any custom content.
+
+[CoroutineRunner.dll]
+- 📦 Required for other mods.
+
 ------------------------------------------------------------
 
 🎯 Quality of Life (QoL)
@@ -26,10 +36,7 @@ If not, download it here: https://melonwiki.xyz
 
 ------------------------------------------------------------
 
-🧩 Custom Content
-
-[CustomContentLoader.dll]
-- 📦 Required to enable any custom content.
+🧩 Custom Content (Work in Progress)
 
 [GamblerProfession] (Work in Progress)
 - 🎲 Adds a new class focused on randomness and buffs/debuffs.
