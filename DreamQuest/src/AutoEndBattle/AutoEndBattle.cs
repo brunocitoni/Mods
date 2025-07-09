@@ -19,16 +19,24 @@ namespace AutoEndBattle
     [HarmonyPatch(typeof(Player), "Die")]
     public static class AutoEndBattleFix
     {
-        public static void Postfix(Player __instance)
+        public static bool Prefix(Player __instance)
         {
-            if (__instance == __instance.game.them) // it's a monster who just died, not the player
+            bool actuallyDie = !__instance.game.DeathPrevention(__instance);
+            if (actuallyDie)
             {
-                Infoblock[] allScripts = GameObject.FindObjectsOfType<Infoblock>();
+                __instance.game.Lose(__instance);
 
-                MelonLogger.Msg("Found " + allScripts.Length + " Infoblock scripts. Trying to act of the first one");
+                if (__instance == __instance.game.them) // it's a monster who just died, not the player
+                {
+                    Infoblock[] allScripts = GameObject.FindObjectsOfType<Infoblock>();
 
-                allScripts[0].EndGame();
+                    MelonLogger.Msg("Found " + allScripts.Length + " Infoblock scripts. Trying to act of the first one");
+
+                    allScripts[0].EndGame();
+                }
             }
+
+            return false;
         }
     }
 }

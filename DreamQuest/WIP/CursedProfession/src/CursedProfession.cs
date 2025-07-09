@@ -285,9 +285,10 @@ namespace CursedProfession
         // TODO
         public override void CombatApplyToPlayer(Player p)
         {
+            CountDeckCurses();
             MelonLogger.Msg("Adding helth regen for " + cursesInDeck);
             p.AddToAttribute(PlayerAttributes.HEALTH_REGEN, cursesInDeck);
-            p.Enemy().AddToAttribute(PlayerAttributes.DODGE, 50);
+            p.Enemy().AddToAttribute(PlayerAttributes.DODGE, 75);
         }
     }
 

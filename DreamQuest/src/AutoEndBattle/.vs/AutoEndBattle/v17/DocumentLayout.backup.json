@@ -1,9 +1,9 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Bruno\\Documents\\GitHub\\Mods\\DreamQuest\\WIP\\src\\AutoEndBattle\\",
+  "WorkspaceRootPath": "C:\\Users\\Bruno\\Documents\\GitHub\\Mods\\DreamQuest\\src\\AutoEndBattle\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E719F29D-B0AC-43B7-982E-76C393A9F36B}|AutoEndBattle.csproj|c:\\users\\bruno\\documents\\github\\mods\\dreamquest\\wip\\src\\autoendbattle\\autoendbattle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{E719F29D-B0AC-43B7-982E-76C393A9F36B}|AutoEndBattle.csproj|c:\\users\\bruno\\documents\\github\\mods\\dreamquest\\src\\autoendbattle\\autoendbattle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E719F29D-B0AC-43B7-982E-76C393A9F36B}|AutoEndBattle.csproj|solutionrelative:autoendbattle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -20,13 +20,13 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "AutoEndBattle.cs",
-              "DocumentMoniker": "C:\\Users\\Bruno\\Documents\\GitHub\\Mods\\DreamQuest\\WIP\\src\\AutoEndBattle\\AutoEndBattle.cs",
+              "DocumentMoniker": "C:\\Users\\Bruno\\Documents\\GitHub\\Mods\\DreamQuest\\src\\AutoEndBattle\\AutoEndBattle.cs",
               "RelativeDocumentMoniker": "AutoEndBattle.cs",
-              "ToolTip": "C:\\Users\\Bruno\\Documents\\GitHub\\Mods\\DreamQuest\\WIP\\src\\AutoEndBattle\\AutoEndBattle.cs",
+              "ToolTip": "C:\\Users\\Bruno\\Documents\\GitHub\\Mods\\DreamQuest\\src\\AutoEndBattle\\AutoEndBattle.cs",
               "RelativeToolTip": "AutoEndBattle.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACgAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-06T17:29:49.61Z",
+              "WhenOpened": "2025-07-09T14:46:55.248Z",
               "EditorCaption": ""
             }
           ]
