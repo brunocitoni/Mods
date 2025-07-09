@@ -3,13 +3,13 @@
 Make sure the game is installed and MelonLoader is set up.  
 If not, download it here: https://melonwiki.xyz
 
-1. Download and extract the contents of the `dll` folder into the `Mods` folder inside the game's Steam directory.  
-2. Download and extract the contents of the `assets` folder into the `UserData` folder inside the game's Steam directory.  
-3. Run the game.
+1. 📂 Download and extract the contents of the `dll` folder into the `Mods` folder inside the game's Steam directory.  
+2. 🗂️ Download and extract the contents of the `assets` folder into the `UserData` folder inside the game's Steam directory.  
+3. ▶️ Run the game.
 
 
 -----------------------------------------------------------
-Misc
+🧱 Core Dependencies
 
 [CustomContentLoader.dll]
 - 📦 Required to enable any custom content.
@@ -20,6 +20,9 @@ Misc
 ------------------------------------------------------------
 
 🎯 Quality of Life (QoL)
+
+[GameSpeed.dll]
+- ⚡ Speeds up the game x1, x2 and x3 by pressing 1, 2, 3. 
 
 [DreamQuestFixes.dll]
 - 🧪 Poison damage now pierces when appropriate.
@@ -33,6 +36,7 @@ Misc
 
 [AutoEndBattle.dll]
 - ⏩ Automatically opens post-battle treasure and closes battle screen
+- 💤 Automatically passes the turn if hand is empty.
 
 ------------------------------------------------------------
 
@@ -42,4 +46,5 @@ Misc
 - 🎲 Adds a new class focused on randomness and buffs/debuffs.
 
 [CursedProfession] (Work in Progress)
-- Adds a new class focused on curses and magic.
+- ☠️ Adds a new class focused on making uses of curses and magic.
+
