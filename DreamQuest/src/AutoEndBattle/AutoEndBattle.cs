@@ -1,6 +1,10 @@
-﻿using MelonLoader;
-using HarmonyLib;
+﻿using HarmonyLib;
+using MelonLoader;
+using System.Collections.Generic;
+using System.Reflection.Emit;
+using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityScript.Lang;
 using static MelonLoader.MelonLogger;
 
 [assembly: MelonInfo(typeof(AutoEndBattle.AutoEndBattle), "AutoEndBattle", "1.0.0", "Bruno", null)]
@@ -39,4 +43,29 @@ namespace AutoEndBattle
             return false;
         }
     }
+
+ // if player has no cards left in hand immediately pass, what about powers????
+    [HarmonyPatch(typeof(Infoblock), "NotifyBehave")]
+    public class NotifyBehavePatch
+    {
+        static void Prefix(Infoblock __instance)
+        {
+            __instance.playAllCardsBlock = false;
+
+            if (!__instance.player.HasLegalPlays() &&
+                __instance.player.game.winner == null &&
+                !__instance.shaken &&
+                !__instance.IgnoreShake() && __instance.player.hand.ChildCount() == 0)
+            {
+                __instance.shaken = true;
+                __instance.StartCoroutine_Auto(__instance.ShakeEndTurnButton());
+                __instance.player.game.Tutorial(UserAttribute.TUTORIAL_COMBAT_END_TURN);
+
+                // ✅ Inject your call here
+                __instance.EndTurn();
+            }
+        }
+    }
+
+
 }
