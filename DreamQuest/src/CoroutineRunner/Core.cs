@@ -50,26 +50,26 @@ public class CoroutineRunner : MonoBehaviour
         MelonLogger.Msg($"[Runner] Attached MonoBehaviour: {_instance != null}");
     }
 
-    public void RunAfterDelay(float delaySeconds, System.Action action, bool fixedTime = false)
+    public void RunAfterDelay(float delaySeconds, System.Action action, bool realtime = false)
     {
         MelonLogger.Msg("Inside Run After Delay");
-        if (fixedTime)
-            StartCoroutine(RunFixedTime(action, delaySeconds));
+        if (realtime)
+            StartCoroutine(RunRealtime(action, delaySeconds));
         else
             StartCoroutine(Run(action, delaySeconds));
     }
 
     private IEnumerator Run(System.Action action, float delay)
     {
-        MelonLogger.Msg("Coroutine started");
+        MelonLogger.Msg("Scaled time coroutine started");
         yield return new WaitForSeconds(delay);
         action?.Invoke();
     }
 
-    private IEnumerator RunFixedTime(System.Action action, float delay)
+    private IEnumerator RunRealtime(System.Action action, float delay)
     {
-        MelonLogger.Msg("Coroutine started");
-        yield return new WaitForSeconds(delay);
+        MelonLogger.Msg("Realtime coroutine started");
+        yield return new WaitForSecondsRealtime(delay);
         action?.Invoke();
     }
 
