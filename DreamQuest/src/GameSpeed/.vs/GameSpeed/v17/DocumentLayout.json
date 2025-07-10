@@ -1,9 +1,9 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Bruno\\Documents\\GitHub\\Mods\\DreamQuest\\WIP\\src\\GameSpeed\\",
+  "WorkspaceRootPath": "C:\\Users\\Bruno\\Documents\\GitHub\\Mods\\DreamQuest\\src\\GameSpeed\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E37AE644-45D0-4177-896F-8476619C32B6}|GameSpeed.csproj|c:\\users\\bruno\\documents\\github\\mods\\dreamquest\\wip\\src\\gamespeed\\core.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{E37AE644-45D0-4177-896F-8476619C32B6}|GameSpeed.csproj|c:\\users\\bruno\\documents\\github\\mods\\dreamquest\\src\\gamespeed\\core.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E37AE644-45D0-4177-896F-8476619C32B6}|GameSpeed.csproj|solutionrelative:core.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -20,11 +20,11 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Core.cs",
-              "DocumentMoniker": "C:\\Users\\Bruno\\Documents\\GitHub\\Mods\\DreamQuest\\WIP\\src\\GameSpeed\\Core.cs",
+              "DocumentMoniker": "C:\\Users\\Bruno\\Documents\\GitHub\\Mods\\DreamQuest\\src\\GameSpeed\\Core.cs",
               "RelativeDocumentMoniker": "Core.cs",
-              "ToolTip": "C:\\Users\\Bruno\\Documents\\GitHub\\Mods\\DreamQuest\\WIP\\src\\GameSpeed\\Core.cs",
+              "ToolTip": "C:\\Users\\Bruno\\Documents\\GitHub\\Mods\\DreamQuest\\src\\GameSpeed\\Core.cs",
               "RelativeToolTip": "Core.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAxAAAAAAAAAA==",
+              "ViewState": "AgIAABQAAAAAAAAAAAAowDkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-09T19:53:17.377Z",
               "EditorCaption": ""

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CoroutineRunner")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+332b347ced33daefa1c1c3c9273e0cba35ecb021")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5ebd8dcfc4bdefa65aee15e8f7314d935c851128")]
 [assembly: System.Reflection.AssemblyProductAttribute("CoroutineRunner")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CoroutineRunner")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

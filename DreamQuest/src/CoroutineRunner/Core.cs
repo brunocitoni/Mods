@@ -1,7 +1,7 @@
 ﻿using HarmonyLib;
 using MelonLoader;
-using System.Collections;
 using UnityEngine;
+using System.Collections;
 using static MelonLoader.MelonLogger;
 
 [assembly: MelonInfo(typeof(CoroutineRunnerInit), "Coroutine Runner", "1.0.0", "BrunoCitoni")]
@@ -69,7 +69,9 @@ public class CoroutineRunner : MonoBehaviour
     private IEnumerator RunRealtime(System.Action action, float delay)
     {
         MelonLogger.Msg("Realtime coroutine started");
-        yield return new WaitForSecondsRealtime(delay);
+        float start = Time.realtimeSinceStartup;
+        while (Time.realtimeSinceStartup - start < delay)
+            yield return null;
         action?.Invoke();
     }
 

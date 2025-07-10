@@ -316,6 +316,7 @@ namespace GamblerProfession
         // TODO
         public override void CombatApplyToPlayer(Player p)
         {
+            // apply panic
             InitDictionaryAndWeights();
             ApplyNewBuff(p);
         }

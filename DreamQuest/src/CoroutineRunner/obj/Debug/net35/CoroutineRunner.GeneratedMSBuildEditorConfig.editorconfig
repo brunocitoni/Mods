@@ -1,6 +1,6 @@
 is_global = true
 build_property.RootNamespace = CoroutineRunner
-build_property.ProjectDir = C:\Users\Bruno\Documents\GitHub\Mods\DreamQuest\WIP\src\CoroutineRunner\
+build_property.ProjectDir = C:\Users\Bruno\Documents\GitHub\Mods\DreamQuest\src\CoroutineRunner\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.CsWinRTUseWindowsUIXamlProjections = false

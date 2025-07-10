@@ -1,9 +1,9 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Bruno\\Documents\\GitHub\\Mods\\DreamQuest\\WIP\\src\\CoroutineRunner\\",
+  "WorkspaceRootPath": "C:\\Users\\Bruno\\Documents\\GitHub\\Mods\\DreamQuest\\src\\CoroutineRunner\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{74381C81-B443-49E0-B971-7C9E40E9D7A7}|CoroutineRunner.csproj|c:\\users\\bruno\\documents\\github\\mods\\dreamquest\\wip\\src\\coroutinerunner\\core.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{74381C81-B443-49E0-B971-7C9E40E9D7A7}|CoroutineRunner.csproj|c:\\users\\bruno\\documents\\github\\mods\\dreamquest\\src\\coroutinerunner\\core.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{74381C81-B443-49E0-B971-7C9E40E9D7A7}|CoroutineRunner.csproj|solutionrelative:core.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -20,11 +20,11 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Core.cs",
-              "DocumentMoniker": "C:\\Users\\Bruno\\Documents\\GitHub\\Mods\\DreamQuest\\WIP\\src\\CoroutineRunner\\Core.cs",
+              "DocumentMoniker": "C:\\Users\\Bruno\\Documents\\GitHub\\Mods\\DreamQuest\\src\\CoroutineRunner\\Core.cs",
               "RelativeDocumentMoniker": "Core.cs",
-              "ToolTip": "C:\\Users\\Bruno\\Documents\\GitHub\\Mods\\DreamQuest\\WIP\\src\\CoroutineRunner\\Core.cs",
+              "ToolTip": "C:\\Users\\Bruno\\Documents\\GitHub\\Mods\\DreamQuest\\src\\CoroutineRunner\\Core.cs",
               "RelativeToolTip": "Core.cs",
-              "ViewState": "AgIAACgAAAAAAAAAAAAcwBMAAAAsAAAAAAAAAA==",
+              "ViewState": "AgIAACoAAAAAAAAAAAAqwEsAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-09T17:34:50.957Z",
               "EditorCaption": ""
