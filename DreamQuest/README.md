@@ -22,7 +22,8 @@ If not, download it here: https://melonwiki.xyz
 🎯 Quality of Life (QoL)
 
 [GameSpeed.dll]
-- ⚡ Speeds up the game x1, x2 and x3 by pressing 1, 2, 3. 
+- ⚡ Speeds up the game x1, x2 and x3 by pressing 1, 2, 3.
+- Current limitations: The timer on some monsters will speed up too. Working on a fix.
 
 [DreamQuestFixes.dll]
 - 🧪 Poison damage now pierces when appropriate.
@@ -37,6 +38,7 @@ If not, download it here: https://melonwiki.xyz
 [AutoEndBattle.dll]
 - ⏩ Automatically opens post-battle treasure and closes battle screen
 - 💤 Automatically passes the turn if hand is empty.
+- Current limitations: Auto-passing does not keep into account if any powers can be used.
 
 ------------------------------------------------------------
 
@@ -46,5 +48,5 @@ If not, download it here: https://melonwiki.xyz
 - 🎲 Adds a new class focused on randomness and buffs/debuffs.
 
 [CursedProfession] (Work in Progress)
-- ☠️ Adds a new class focused on making uses of curses and magic.
+- ☠️ Adds a new magic class focused on making uses of curses.
 
