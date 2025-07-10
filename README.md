@@ -1,12 +1,17 @@
 # Mods
 
-A collection of mods I created. Feel free to use and distribute. If it's convenient try and mention me as the creator. 
+A collection of mods I've created. Feel free to use and distribute them. If it's convenient try and mention me as the creator.
 
-Find me also at:
+---
 
-https://brunocitoni.itch.io/
-https://www.brunocitoni.com/ 
+## 🔗 Find Me Online
 
-Feel free to contribute:
+- [brunocitoni.itch.io](https://brunocitoni.itch.io/)
+- [brunocitoni.com](https://www.brunocitoni.com/)
 
-https://ko-fi.com/bruno14
+---
+
+## ☕ Support My Work
+
+If you'd like to support future modding projects, you can contribute here:  
+[ko-fi.com/bruno14](https://ko-fi.com/bruno14)
