@@ -4,7 +4,7 @@ using System.Collections;
 using UnityEngine;
 using static MelonLoader.MelonLogger;
 
-[assembly: MelonInfo(typeof(CoroutineRunnerInit), "Coroutine Runner", "1.0.0", "YourName")]
+[assembly: MelonInfo(typeof(CoroutineRunnerInit), "Coroutine Runner", "1.0.0", "BrunoCitoni")]
 [assembly: MelonGame(null, null)]
 
 public class CoroutineRunnerInit : MelonMod
@@ -50,13 +50,23 @@ public class CoroutineRunner : MonoBehaviour
         MelonLogger.Msg($"[Runner] Attached MonoBehaviour: {_instance != null}");
     }
 
-    public void RunAfterDelay(float delaySeconds, System.Action action)
+    public void RunAfterDelay(float delaySeconds, System.Action action, bool fixedTime = false)
     {
         MelonLogger.Msg("Inside Run After Delay");
-        StartCoroutine(Run(action, delaySeconds));
+        if (fixedTime)
+            StartCoroutine(RunFixedTime(action, delaySeconds));
+        else
+            StartCoroutine(Run(action, delaySeconds));
     }
 
     private IEnumerator Run(System.Action action, float delay)
+    {
+        MelonLogger.Msg("Coroutine started");
+        yield return new WaitForSeconds(delay);
+        action?.Invoke();
+    }
+
+    private IEnumerator RunFixedTime(System.Action action, float delay)
     {
         MelonLogger.Msg("Coroutine started");
         yield return new WaitForSeconds(delay);
