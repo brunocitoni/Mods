@@ -126,7 +126,7 @@ namespace CursedProfession
 
         public override string Description()
         {
-            return "A cursed child of destiny. Blind, mauled and stunted physically, you found strenght in the same darkness that you were cast out in";
+            return "A cursed child of destiny. Blind, mauled and stunted physically, you drew strenght from the same darkness you were cast out in.";
         }
 
         public override string AbilityDescription()
