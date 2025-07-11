@@ -267,10 +267,9 @@ namespace GamblerProfession
 
         private void InitDictionaryAndWeights()
         {
-            possibleAttributes.Add(new Dictionary<PlayerAttributes, int> { { PlayerAttributes.PHYS_IMMUNE, 1 } });
+             possibleAttributes.Add(new Dictionary<PlayerAttributes, int> { { PlayerAttributes.WEAKNESS, level % 5 } });
             possibleAttributes.Add(new Dictionary<PlayerAttributes, int> { { PlayerAttributes.REFLECT, level * 2 } });
-            possibleAttributes.Add(new Dictionary<PlayerAttributes, int> { { PlayerAttributes.PENANCE, level } });
-            possibleAttributes.Add(new Dictionary<PlayerAttributes, int> { { PlayerAttributes.WEAKNESS, level } });
+            possibleAttributes.Add(new Dictionary<PlayerAttributes, int> { { PlayerAttributes.PENANCE, level % 2 } });
             possibleAttributes.Add(new Dictionary<PlayerAttributes, int> { { PlayerAttributes.EARTH_IMMUNE, 1 } });
             possibleAttributes.Add(new Dictionary<PlayerAttributes, int> { { PlayerAttributes.WATER_IMMUNE, 1 } });
             possibleAttributes.Add(new Dictionary<PlayerAttributes, int> { { PlayerAttributes.HEALTH_REGEN, level } });
