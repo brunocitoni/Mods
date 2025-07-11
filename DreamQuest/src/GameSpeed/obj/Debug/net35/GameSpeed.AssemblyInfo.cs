@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GameSpeed")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5ebd8dcfc4bdefa65aee15e8f7314d935c851128")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9fe2c1ba4581dbda4bcbe2e1d909a356c5046218")]
 [assembly: System.Reflection.AssemblyProductAttribute("GameSpeed")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GameSpeed")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

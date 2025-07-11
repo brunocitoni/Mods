@@ -76,3 +76,4 @@ C:\Users\Bruno\Documents\GitHub\Mods\DreamQuest\src\GameSpeed\obj\Debug\net35\Ga
 C:\Users\Bruno\Documents\GitHub\Mods\DreamQuest\src\GameSpeed\obj\Debug\net35\GameSpeed.csproj.Up2Date
 C:\Users\Bruno\Documents\GitHub\Mods\DreamQuest\src\GameSpeed\obj\Debug\net35\GameSpeed.dll
 C:\Users\Bruno\Documents\GitHub\Mods\DreamQuest\src\GameSpeed\obj\Debug\net35\GameSpeed.pdb
+C:\Users\Bruno\Documents\GitHub\Mods\DreamQuest\src\GameSpeed\bin\Debug\net35\CoroutineRunner.dll

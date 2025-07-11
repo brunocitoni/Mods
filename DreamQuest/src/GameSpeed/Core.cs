@@ -40,23 +40,21 @@ namespace GameSpeed
     [HarmonyPatch(typeof(TimerScript), nameof(TimerScript.StartTimer))]
     public static class TimerScript_StartTimer_Patch
     {
-        public static bool Prefix(TimerScript __instance, ref IEnumerator __result)
+        public static bool Prefix(TimerScript __instance)
         {
-            __result = StartTimerRealtime(__instance);
-            return false;
-        }
-
-        private static IEnumerator StartTimerRealtime(TimerScript instance)
-        {
-            float startTime = Time.realtimeSinceStartup;
-            float endTime = startTime + instance.duration;
-
-            while (Time.realtimeSinceStartup < endTime)
+            // Make sure CoroutineRunner is initialized
+            if (CoroutineRunner.Instance == null)
             {
-                yield return null;
+                MelonLogger.Warning("CoroutineRunner.Instance is null. Trying to create it manually.");
+                CoroutineRunner.Create();
             }
 
-            instance.DestroyTimer();
+            CoroutineRunner.Instance.RunAfterDelay(__instance.duration, () =>
+            {
+                __instance.DestroyTimer();
+            }, realtime: true); // use realtime delay
+
+            return false; // Skip original method
         }
     }
 

@@ -23,17 +23,17 @@ If not, download it here: https://melonwiki.xyz
 
 [GameSpeed.dll]
 - ⚡ Speeds up the game x1, x2 and x3 by pressing 1, 2, 3.
-- Current limitations: The timer on some monsters will speed up too. Working on a fix.
 
 [DreamQuestFixes.dll]
 - 🧪 Poison damage now pierces when appropriate.
 - 💰 Treasure chests reward a few coins per skipped card.
 - 📝 Fixed incorrect *Discharge* card description.
 
-[KeyboardMovement.dll]
+[KeyboardMovement.dll] (Work in Progress)
 - 🎮 Enables dungeon movement using WASD or arrow keys.
 - 🎮 Enables opening dungeon features with the Space key.
-- 🚧 More keyboard features planned for future updates.
+- 🎮 Enables some control over battles using keyboard.
+- 🚧 Ideally working towards complete keyboard and controller support.
 
 [AutoEndBattle.dll]
 - ⏩ Automatically opens post-battle treasure and closes battle screen
@@ -42,7 +42,7 @@ If not, download it here: https://melonwiki.xyz
 
 ------------------------------------------------------------
 
-🧩 Custom Content (Work in Progress)
+🧩 Custom Content
 
 [GamblerProfession] (Work in Progress)
 - 🎲 Adds a new class focused on randomness and buffs/debuffs.

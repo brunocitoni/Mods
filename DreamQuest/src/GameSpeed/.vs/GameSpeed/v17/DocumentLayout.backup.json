@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\Bruno\\Documents\\GitHub\\Mods\\DreamQuest\\src\\GameSpeed\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{E37AE644-45D0-4177-896F-8476619C32B6}|GameSpeed.csproj|c:\\users\\bruno\\documents\\github\\mods\\dreamquest\\src\\gamespeed\\gamespeed.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{E37AE644-45D0-4177-896F-8476619C32B6}|GameSpeed.csproj|solutionrelative:gamespeed.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{E37AE644-45D0-4177-896F-8476619C32B6}|GameSpeed.csproj|c:\\users\\bruno\\documents\\github\\mods\\dreamquest\\src\\gamespeed\\core.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E37AE644-45D0-4177-896F-8476619C32B6}|GameSpeed.csproj|solutionrelative:core.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
@@ -19,12 +23,25 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "GameSpeed",
+              "DocumentMoniker": "C:\\Users\\Bruno\\Documents\\GitHub\\Mods\\DreamQuest\\src\\GameSpeed\\GameSpeed.csproj",
+              "RelativeDocumentMoniker": "GameSpeed.csproj",
+              "ToolTip": "C:\\Users\\Bruno\\Documents\\GitHub\\Mods\\DreamQuest\\src\\GameSpeed\\GameSpeed.csproj",
+              "RelativeToolTip": "GameSpeed.csproj",
+              "ViewState": "AgIAADIAAAAAAAAAAAAuwEsAAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-07-11T16:58:43.057Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "Core.cs",
               "DocumentMoniker": "C:\\Users\\Bruno\\Documents\\GitHub\\Mods\\DreamQuest\\src\\GameSpeed\\Core.cs",
               "RelativeDocumentMoniker": "Core.cs",
               "ToolTip": "C:\\Users\\Bruno\\Documents\\GitHub\\Mods\\DreamQuest\\src\\GameSpeed\\Core.cs",
               "RelativeToolTip": "Core.cs",
-              "ViewState": "AgIAABQAAAAAAAAAAAAowDkAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABQAAAAAAAAAAAAhwDIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-09T19:53:17.377Z",
               "EditorCaption": ""
