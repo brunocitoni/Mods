@@ -1,9 +1,9 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Bruno\\Documents\\GitHub\\Mods\\DreamQuest\\src\\KeyboardMovement\\",
+  "WorkspaceRootPath": "C:\\Users\\Bruno\\Documents\\GitHub\\Mods\\DreamQuest\\src\\KeyboardMovement (WIP)\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{DBB3AA6A-7083-4B4F-9C44-E14C889E42A3}|KeyboardMovement.csproj|c:\\users\\bruno\\documents\\github\\mods\\dreamquest\\src\\keyboardmovement\\keyboardmovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{DBB3AA6A-7083-4B4F-9C44-E14C889E42A3}|KeyboardMovement.csproj|c:\\users\\bruno\\documents\\github\\mods\\dreamquest\\src\\keyboardmovement (wip)\\keyboardmovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{DBB3AA6A-7083-4B4F-9C44-E14C889E42A3}|KeyboardMovement.csproj|solutionrelative:keyboardmovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -20,11 +20,11 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "KeyboardMovement.cs",
-              "DocumentMoniker": "C:\\Users\\Bruno\\Documents\\GitHub\\Mods\\DreamQuest\\src\\KeyboardMovement\\KeyboardMovement.cs",
+              "DocumentMoniker": "C:\\Users\\Bruno\\Documents\\GitHub\\Mods\\DreamQuest\\src\\KeyboardMovement (WIP)\\KeyboardMovement.cs",
               "RelativeDocumentMoniker": "KeyboardMovement.cs",
-              "ToolTip": "C:\\Users\\Bruno\\Documents\\GitHub\\Mods\\DreamQuest\\src\\KeyboardMovement\\KeyboardMovement.cs",
+              "ToolTip": "C:\\Users\\Bruno\\Documents\\GitHub\\Mods\\DreamQuest\\src\\KeyboardMovement (WIP)\\KeyboardMovement.cs",
               "RelativeToolTip": "KeyboardMovement.cs",
-              "ViewState": "AgIAAPIAAAAAAAAAAAAowBEBAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAADwAAAAAAAAAAAAYwEgAAABAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-06T17:36:25.134Z",
               "EditorCaption": ""
