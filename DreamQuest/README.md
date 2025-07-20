@@ -22,7 +22,7 @@ If not, download it here: https://melonwiki.xyz
 🎯 Quality of Life (QoL)
 
 [GameSpeed.dll]
-- ⚡ Speeds up the game x1, x2 and x3 by pressing 1, 2, 3.
+- ⚡ Speeds up the game by pressing number keys (higher digit higher speed).
 
 [DreamQuestFixes.dll]
 - 🧪 Poison damage now pierces when appropriate.
@@ -30,9 +30,9 @@ If not, download it here: https://melonwiki.xyz
 - 📝 Fixed incorrect *Discharge* card description.
 
 [KeyboardMovement.dll] (Work in Progress)
-- 🎮 Enables dungeon movement using WASD or arrow keys.
-- 🎮 Enables opening dungeon features with the Space key.
-- 🎮 Enables some control over battles using keyboard.
+- 🎮 Enables dungeon movement and opening features using WASD or arrow keys and Space.
+- 🎮 Enables moving in popups and menus using WASD or arrow keys and selecting highlighted buttons with space.
+- 🎮 Enables some control over battles using WASD, LeftShift and Space.
 - 🚧 Ideally working towards complete keyboard and controller support.
 
 [AutoEndBattle.dll]

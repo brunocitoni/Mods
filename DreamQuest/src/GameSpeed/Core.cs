@@ -14,7 +14,7 @@ namespace GameSpeed
         public override void OnInitializeMelon()
         {
             LoggerInstance.Msg("Initialized speed hack.");
-            Time.timeScale = 2.0f;
+            Time.timeScale = 1.0f;
         }
 
         public override void OnUpdate()
@@ -22,17 +22,37 @@ namespace GameSpeed
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
                 Time.timeScale = 1.0f;
-                LoggerInstance.Msg("Time scale set to 1.0x");
             }
             else if (Input.GetKeyDown(KeyCode.Alpha2))
             {
-                Time.timeScale = 2.0f;
-                LoggerInstance.Msg("Time scale set to 2.0x");
+                Time.timeScale = 1.2f;
             }
             else if (Input.GetKeyDown(KeyCode.Alpha3))
             {
+                Time.timeScale = 1.4f;
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha4))
+            {
+                Time.timeScale = 1.8f;
+            } else if (Input.GetKeyDown(KeyCode.Alpha5))
+            {                
+                Time.timeScale = 2.0f;
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha6))
+            {
+                Time.timeScale = 2.5f;
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha7))
+            {
                 Time.timeScale = 3.0f;
-                LoggerInstance.Msg("Time scale set to 3.0x");
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha8))
+            {
+                Time.timeScale = 4.0f;
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha9))
+            {
+                Time.timeScale = 5.0f;
             }
         }
     }
