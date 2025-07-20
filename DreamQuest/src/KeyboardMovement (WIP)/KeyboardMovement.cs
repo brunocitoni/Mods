@@ -13,6 +13,14 @@ using static MelonLoader.MelonLogger;
 
 namespace KeyboardControls
 {
+    enum JoystickButton
+    {
+        DPadUp = 13,
+        DPadDown = 14,
+        DPadLeft = 11,
+        DPadRight = 12
+    }
+
     public class KeyboardControlsInit : MelonMod
     {
         public override void OnInitializeMelon()
@@ -31,11 +39,13 @@ namespace KeyboardControls
         }
     }
 
+    #region Master
     public class KeyboardControlsMaster : MonoBehaviour
     {
         public static KeyboardControlsMaster _instance;
         public static GameObject GO;
         public static GamePhysical game;
+        public static state _currentState;
 
         public enum state
         {
@@ -64,22 +74,17 @@ namespace KeyboardControls
 
             EnableSelf(true);
 
-            // iùnitialize all the other components
+            // initialize all the other components
             KeyboardControlCombat.Initialize();
             KeyboardControlDungeon.Initialize();
             KeyboardControlShop.Initialize();
             KeyboardControlMenu.Initialize();
-
-            // force update to menu as default for start of game
-            UpdateState(_currentState, true);
         }
         public static void EnableSelf(bool enable)
         {
             _instance.enabled = enable;
             MelonLogger.Msg("KeyboardControlMaster enabled: " + _instance.enabled);
         }
-
-        private static state _currentState = state.MENU; // or whatever default fits
 
         public static void UpdateState(state newState, bool forceUpdate = false)
         {
@@ -159,6 +164,7 @@ namespace KeyboardControls
 
 
     }
+    #endregion
 
     #region Dungeon
     public class KeyboardControlDungeon : MonoBehaviour
@@ -241,6 +247,8 @@ namespace KeyboardControls
     public class KeyboardControlShop : MonoBehaviour
     {
         public static KeyboardControlShop _instance;
+        private static ShopDialogueObject selectedClickable;
+        private static List<ShopDialogueObject> allClickables;
 
         public static void Initialize()
         {
@@ -260,20 +268,37 @@ namespace KeyboardControls
         {
             _instance.enabled = enable;
             MelonLogger.Msg("KeyboardControlShop enabled: " + _instance.enabled);
-        }
 
-        private ShopDialogueButton selectedClickable;
-        private List<ShopDialogueButton> allClickables;
+            // find and select the first clickable by default
+            if (enable)
+            {
+                allClickables = KeyboardControlsMaster.game.game.activeShop
+                    .GetComponentsInChildren<ShopDialogueObject>()
+                    .Where(c => c is ShopDialogueButton || c is ShopDialogueAchievement || c is ShopDialogueBestiaryEntry || c is ShopDialogueTalent || c is ShopDialogueCardViewerName || c is ShopDialogueHistory)
+                    .ToList();
+                if (allClickables.Count > 0)
+                {
+                    selectedClickable = allClickables.FirstOrDefault();
+                    _instance.HighlightSelected();
+                }
+            }
+        }
 
         public void Update()
         {
             if (KeyboardControlsMaster.game.game.activeShop == null) return;
 
-            allClickables = KeyboardControlsMaster.game.game.activeShop.GetComponentsInChildren<ShopDialogueButton>().ToList();
+            allClickables = KeyboardControlsMaster.game.game.activeShop
+                .GetComponentsInChildren<ShopDialogueObject>()
+                .Where(c => c is ShopDialogueButton || c is ShopDialogueAchievement || c is ShopDialogueBestiaryEntry || c is ShopDialogueTalent || c is ShopDialogueCardViewerName || c is ShopDialogueHistory)
+                .ToList();
+
+
             if (allClickables.Count == 0) return;
 
             // WASD directional input
-            if (Input.GetKeyDown(KeyCode.W)) {
+            if (Input.GetKeyDown(KeyCode.W))
+            {
                 UnhighlightAll();
                 selectedClickable = ClosestInDirection(0);
             }
@@ -302,10 +327,14 @@ namespace KeyboardControls
                     btn.button.OnMouseDown();
                     btn.button.OnMouseUp();
                 }
+                else
+                {
+                    selectedClickable.OnMouseDown();
+                }
             }
         }
 
-        private ShopDialogueButton ClosestInDirection(int direction)
+        private ShopDialogueObject ClosestInDirection(int direction)
         {
             // select the closest to selectedClickable from the allClickable list in the specific direction 0 = Up, 1 = Down, 2 = Left, 3 = Right
             if (selectedClickable == null)
@@ -320,11 +349,11 @@ namespace KeyboardControls
             }
             else if (direction == 1)
             {
-                moveDir = new Vector2(0,-1);
+                moveDir = new Vector2(0, -1);
             }
             else if (direction == 2)
             {
-                moveDir = new Vector2(-1,0);
+                moveDir = new Vector2(-1, 0);
             }
             else if (direction == 3)
             {
@@ -337,7 +366,7 @@ namespace KeyboardControls
                 return null;
             }
             Vector2 currentPos = selectedClickable.transform.position;
-            ShopDialogueButton best = null;
+            ShopDialogueObject best = null;
             float bestDist = float.MaxValue;
             foreach (var btn in allClickables)
             {
@@ -374,12 +403,17 @@ namespace KeyboardControls
                 return selectedClickable;
             }
         }
-        
+
         private void UnhighlightAll()
         {
+            ShopDialogueBestiaryEntry.ClearHighlight();
+            ShopDialogueAchievement.ClearHighlight();
+
             foreach (var btn in allClickables)
             {
-                btn.UnHighlight(); // Assuming you have a UnHighlight() method
+                if (btn is ShopDialogueButton)
+                    (btn as ShopDialogueButton).UnHighlight(); // Assuming you have a UnHighlight() method
+                btn.UnHighlight();
             }
         }
 
@@ -401,6 +435,9 @@ namespace KeyboardControls
     public class KeyboardControlMenu : MonoBehaviour
     {
         public static KeyboardControlMenu _instance;
+        public static ShopDialogueButton selectedClickable;
+        public static List<ShopDialogueButton> allClickables;
+
         public static void Initialize()
         {
             if (_instance == null)
@@ -419,42 +456,57 @@ namespace KeyboardControls
         {
             _instance.enabled = enable;
             MelonLogger.Msg("KeyboardControlMenu enabled: " + _instance.enabled);
+
+            if (enable)
+            {
+                MelonLogger.Msg("Found " + allClickables.Count + " clickable buttons in scene on enabled");
+                if (allClickables.Count > 0)
+                {
+                    selectedClickable = allClickables.FirstOrDefault();
+                    MelonLogger.Msg("Selected first clickable: " + selectedClickable.text.text);
+                    _instance.HighlightSelected();
+                }
+            }
         }
 
-
-        private ShopDialogueButton selectedClickable;
-        private List<ShopDialogueButton> allClickables;
+        public static List<ShopDialogueButton> _existingBeforeInit;
 
         public void Update()
         {
-            allClickables = FindObjectOfType<ShopDialogueButton>()?.GetComponentsInChildren<ShopDialogueButton>().ToList();
             if (allClickables.Count == 0) return;
 
-            // WASD directional input
-            if (Input.GetKeyDown(KeyCode.W))
+            // Vertical Up
+            if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
             {
                 UnhighlightAll();
-                selectedClickable = ClosestInDirection(0);
+                selectedClickable = ClosestInDirection(0); // Up
             }
-            if (Input.GetKeyDown(KeyCode.S))
+
+            // Vertical Down
+            if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
             {
                 UnhighlightAll();
-                selectedClickable = ClosestInDirection(1);
+                selectedClickable = ClosestInDirection(1); // Down
             }
-            if (Input.GetKeyDown(KeyCode.A))
+
+            // Horizontal Left
+            if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
             {
                 UnhighlightAll();
-                selectedClickable = ClosestInDirection(3);
+                selectedClickable = ClosestInDirection(3); // Left
             }
-            if (Input.GetKeyDown(KeyCode.D))
+
+            // Horizontal Right
+            if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
             {
                 UnhighlightAll();
-                selectedClickable = ClosestInDirection(2);
+                selectedClickable = ClosestInDirection(2); // Right
             }
+
 
             if (Input.GetKeyUp(KeyCode.Space) && selectedClickable != null)
             {
-                MelonLogger.Msg("Pressed space on selected clickable: " + selectedClickable);
+                MelonLogger.Msg("Pressed space on selected clickable: " + selectedClickable.text.text);
                 if (selectedClickable is ShopDialogueButton)
                 {
                     ShopDialogueButton btn = selectedClickable as ShopDialogueButton;
@@ -521,14 +573,14 @@ namespace KeyboardControls
             {
                 // Highlight the new button
                 selectedClickable = best;
-                MelonLogger.Msg("Selected button in direction " + direction + ": " + best);
+                MelonLogger.Msg("Selected button in direction " + direction + ": " + best.text.text);
                 HighlightSelected();
                 return best;
             }
             else
             {
                 // If no button found in that direction, return the current one
-                MelonLogger.Msg("No button found in direction " + direction + ", returning current: " + selectedClickable);
+                MelonLogger.Msg("No button found in direction " + direction + ", returning current: " + selectedClickable.text.text);
                 HighlightSelected();
                 return selectedClickable;
             }
@@ -538,7 +590,7 @@ namespace KeyboardControls
         {
             foreach (var btn in allClickables)
             {
-                btn.UnHighlight(); // Assuming you have a UnHighlight() method
+                btn.UnHighlight();
             }
         }
 
@@ -547,13 +599,52 @@ namespace KeyboardControls
             foreach (var btn in allClickables)
             {
                 if (btn == selectedClickable)
-                    btn.Highlight(); // Assuming you have a Highlight(bool) method
+                    btn.Highlight();
                 else
                     btn.UnHighlight();
             }
         }
-
     }
+
+    [HarmonyPatch(typeof(MainMenu), nameof(MainMenu.Initialize))]
+    public static class MainMenuInitializePatch
+    {
+        [HarmonyPrefix]
+        public static void Prefix()
+        {
+            KeyboardControlMenu._existingBeforeInit = GameObject
+                .FindObjectsOfType<ShopDialogueButton>().ToList();
+        }
+
+        [HarmonyPostfix]
+        public static void Postfix(MainMenu __instance)
+        {
+            var allNow = GameObject
+                .FindObjectsOfType<ShopDialogueButton>()
+                .ToList();
+
+            var justCreated = allNow
+                .Where(b => !KeyboardControlMenu._existingBeforeInit.Contains(b))
+                .ToList();
+
+            // Get all children of cachedChoosePlayerDialogue
+            var toBeRemoved = __instance.cachedChoosePlayerDialogue
+                .GetComponentsInChildren<ShopDialogueObject>();
+
+            // Filter out any buttons that are children of cachedChoosePlayerDialogue
+            justCreated = justCreated
+                .Where(b => !toBeRemoved.Contains(b))
+                .ToList();
+
+            KeyboardControlMenu.allClickables = justCreated;
+
+            MelonLogger.Msg($"[Mod] Found {justCreated.Count} new clickable buttons created by MainMenu.Initialize() (after filtering)");
+
+            KeyboardControlsMaster._currentState = KeyboardControlsMaster.state.MENU;
+            KeyboardControlsMaster.UpdateState(KeyboardControlsMaster._currentState, true);
+        }
+    }
+
     #endregion
 
     #region Combat
