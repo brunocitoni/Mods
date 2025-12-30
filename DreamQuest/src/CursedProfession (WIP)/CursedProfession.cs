@@ -542,6 +542,89 @@ namespace CursedProfession
         }
     }
 
+    public class CursedChocker : EquipmentCard
+    {
+        Texture cardTexture;
+
+        // Token: 0x060004FA RID: 1274 RVA: 0x0001D7DC File Offset: 0x0001B9DC
+        public override void Initialize()
+        {
+            this.PythonInitialize();
+            new TriggerDraw(new ActionSimpleTrigger(this));
+        }
+
+        // Token: 0x060008AC RID: 2220 RVA: 0x0002D3C8 File Offset: 0x0002B5C8
+        public override void SimpleTrigger()
+        {
+            this.ShowOff();
+            this.Draw(1);
+        }
+
+        // Token: 0x060008AD RID: 2221 RVA: 0x0002D3D8 File Offset: 0x0002B5D8
+        public override bool TriggerOnDraw(Card c)
+        {
+            return c is Curse;
+        }
+
+        // Token: 0x060004FB RID: 1275 RVA: 0x0001D7E4 File Offset: 0x0001B9E4
+        public override void PlayEffect()
+        {
+            this.PythonPlayEffect();
+        }
+
+        // Token: 0x060004FC RID: 1276 RVA: 0x0001D7EC File Offset: 0x0001B9EC
+        public virtual void PythonInitialize()
+        {
+            this.internalName = typeof(CursedChocker).AssemblyQualifiedName;
+            this.cardName = "Cursed Chocker";
+            this.text = "Whenever you draw a Curse, draw a card.";
+            this.flavorText = "These curses are really moreish - Super Hans";
+            this.cost = 0;
+            this.goldCost = 50;
+            this.manaCost = 4;
+            this.level = 1;
+            this.maxLevel = 1;
+            this.tier = 2;
+            this.decayTo = string.Empty;
+            base.Initialize();
+            this.AIKeepValue = 5;
+            this.AIPlaySequence = 50;
+            this.cardTexture = GetTextureFromPath(ImageName());
+            if (this.IsPhysical() && this.physical)
+            {
+                this.physical.ChangeTextureNow(GetTextureFromPath(ImageName()));
+            }
+        }
+
+        // Token: 0x060004FD RID: 1277 RVA: 0x0001D864 File Offset: 0x0001BA64
+        public void PythonPlayEffect()
+        {
+        }
+
+
+        public override string ImageName()
+        {
+            string folder = Path.Combine(MelonEnvironment.UserDataDirectory, "CursedProfession");
+            string path = Path.Combine(folder, "BlindRage.png");
+            return path;
+        }
+
+        private Texture GetTextureFromPath(string path)
+        {
+            byte[] imageData = File.ReadAllBytes(path);
+            Texture2D tex = new Texture2D(2, 2); // size will be replaced by LoadImage
+            if (tex.LoadImage(imageData))
+            {
+                return tex;
+            }
+            else
+            {
+                MelonLogger.Msg("Card texture failed to load from image data.");
+                return null;
+            }
+        }
+    }
+
     #endregion
 
     // discard effects
@@ -578,6 +661,11 @@ namespace CursedProfession
             {
                 new PreferenceWrapper(ClassBias.WIZARD, BiasType.FREQUENCY, 1)
             }, 30, new UserAttribute[0], false, null, (float)3, (float)1, (float)6, (float)1, 4, 2, "SpellCard", DamageTypes.RAW, "Blind Rage"));
+
+            CardList.cardList.Add(new CardData(typeof(CursedChocker).AssemblyQualifiedName, new PreferenceWrapper[]
+{
+                new PreferenceWrapper(ClassBias.WIZARD, BiasType.FREQUENCY, 1)
+}, 30, new UserAttribute[0], false, null, (float)3, (float)1, (float)6, (float)1, 4, 2, "EquipmentCard", DamageTypes.RAW, "Cursed Chocker"));
         }
     }
 
