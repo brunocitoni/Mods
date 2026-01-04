@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DreamQuestFixes")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ea6b19bed06665f63a040d4e2ec331a0fd49d603")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d50121eae87edf049182026b4ed3bbcb094b53a7")]
 [assembly: System.Reflection.AssemblyProductAttribute("DreamQuestFixes")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DreamQuestFixes")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

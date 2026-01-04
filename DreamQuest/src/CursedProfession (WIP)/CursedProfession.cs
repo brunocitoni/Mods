@@ -199,7 +199,7 @@ namespace CursedProfession
                 t = LevelUpRewardType.SPECIAL;
                 x = 1;
             }
-            else if (targetLevel == 5)
+            else if (targetLevel == 4)
             {
                 s = "Card";
                 t = LevelUpRewardType.SPECIAL;
@@ -243,7 +243,8 @@ namespace CursedProfession
         // TODO
         public virtual void TieredCards(List<string> l, int cardTier)
         {
-            this.AttackCards(l, cardTier);
+            this.WizardCards(l, cardTier);
+            this.PriestCards(l, cardTier);
         }
 
         // TODO
@@ -282,7 +283,7 @@ namespace CursedProfession
         // TODO
         public override int RewardWeight(CardData c)
         {
-            return (int)Math.Max(c.thief, c.warrior);
+            return (int)Math.Max(c.wizard, c.warrior);
         }
 
         public override void CombatApplyToPlayer(Player p)
@@ -291,6 +292,7 @@ namespace CursedProfession
             MelonLogger.Msg("Curses in deck " + cursesInDeck);
             MelonLogger.Msg("Adding helth regen for " + Mathf.FloorToInt((float)cursesInDeck / 2));
             p.AddToAttribute(PlayerAttributes.HEALTH_REGEN, Mathf.FloorToInt((float)cursesInDeck /2));
+            p.Enemy().SetAttribute(PlayerAttributes.DODGE, 0);
             p.Enemy().AddToAttribute(PlayerAttributes.DODGE, 75);
         }
 

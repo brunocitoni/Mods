@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Bruno\\Documents\\GitHub\\Mods\\DreamQuest\\WIP\\CursedProfession\\src\\CursedProfession.csproj": {}
+    "C:\\Users\\Bruno\\Documents\\GitHub\\Mods\\DreamQuest\\src\\CursedProfession (WIP)\\CursedProfession.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Bruno\\Documents\\GitHub\\Mods\\DreamQuest\\WIP\\CursedProfession\\src\\CursedProfession.csproj": {
+    "C:\\Users\\Bruno\\Documents\\GitHub\\Mods\\DreamQuest\\src\\CursedProfession (WIP)\\CursedProfession.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Bruno\\Documents\\GitHub\\Mods\\DreamQuest\\WIP\\CursedProfession\\src\\CursedProfession.csproj",
+        "projectUniqueName": "C:\\Users\\Bruno\\Documents\\GitHub\\Mods\\DreamQuest\\src\\CursedProfession (WIP)\\CursedProfession.csproj",
         "projectName": "CursedProfession",
-        "projectPath": "C:\\Users\\Bruno\\Documents\\GitHub\\Mods\\DreamQuest\\WIP\\CursedProfession\\src\\CursedProfession.csproj",
+        "projectPath": "C:\\Users\\Bruno\\Documents\\GitHub\\Mods\\DreamQuest\\src\\CursedProfession (WIP)\\CursedProfession.csproj",
         "packagesPath": "C:\\Users\\Bruno\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Bruno\\Documents\\GitHub\\Mods\\DreamQuest\\WIP\\CursedProfession\\src\\obj\\",
+        "outputPath": "C:\\Users\\Bruno\\Documents\\GitHub\\Mods\\DreamQuest\\src\\CursedProfession (WIP)\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

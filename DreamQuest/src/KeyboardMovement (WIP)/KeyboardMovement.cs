@@ -746,7 +746,8 @@ namespace KeyboardControls
                 HighlightNext(highlightedIndex);
             }
 
-            if (Input.GetKeyUp(KeyCode.LeftShift))
+            // play selected
+            if (Input.GetKeyUp(KeyCode.Space))
             {
                 MelonLogger.Msg("Calling PlayMe on selected card: " + currentSelectedCard);
                 if (currentSelectedCard != null)
@@ -760,7 +761,14 @@ namespace KeyboardControls
                 }
             }
 
-            if (Input.GetKeyUp(KeyCode.Space))
+            // discard all
+            if (Input.GetKeyUp(KeyCode.Q))
+            {
+                player.DiscardAll();
+            }
+
+            // pass
+            if (Input.GetKeyUp(KeyCode.LeftShift))
             {
                 player.Pass();
             }

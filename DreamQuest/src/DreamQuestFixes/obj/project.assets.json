@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Bruno\\Documents\\GitHub\\Mods\\DreamQuest\\WIP\\src\\DreamQuestFixes\\DreamQuestFixes.csproj",
+      "projectUniqueName": "C:\\Users\\Bruno\\Documents\\GitHub\\Mods\\DreamQuest\\src\\DreamQuestFixes\\DreamQuestFixes.csproj",
       "projectName": "DreamQuestFixes",
-      "projectPath": "C:\\Users\\Bruno\\Documents\\GitHub\\Mods\\DreamQuest\\WIP\\src\\DreamQuestFixes\\DreamQuestFixes.csproj",
+      "projectPath": "C:\\Users\\Bruno\\Documents\\GitHub\\Mods\\DreamQuest\\src\\DreamQuestFixes\\DreamQuestFixes.csproj",
       "packagesPath": "C:\\Users\\Bruno\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Bruno\\Documents\\GitHub\\Mods\\DreamQuest\\WIP\\src\\DreamQuestFixes\\obj\\",
+      "outputPath": "C:\\Users\\Bruno\\Documents\\GitHub\\Mods\\DreamQuest\\src\\DreamQuestFixes\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

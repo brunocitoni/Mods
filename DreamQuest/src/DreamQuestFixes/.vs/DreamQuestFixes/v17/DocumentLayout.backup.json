@@ -1,9 +1,9 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Bruno\\Documents\\GitHub\\Mods\\DreamQuest\\WIP\\src\\DreamQuestFixes\\",
+  "WorkspaceRootPath": "C:\\Users\\Bruno\\Documents\\GitHub\\Mods\\DreamQuest\\src\\DreamQuestFixes\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D9DE8549-5698-4137-BCAB-A08110BE471A}|DreamQuestFixes.csproj|c:\\users\\bruno\\documents\\github\\mods\\dreamquest\\wip\\src\\dreamquestfixes\\dreamquestfixes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{D9DE8549-5698-4137-BCAB-A08110BE471A}|DreamQuestFixes.csproj|c:\\users\\bruno\\documents\\github\\mods\\dreamquest\\src\\dreamquestfixes\\dreamquestfixes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D9DE8549-5698-4137-BCAB-A08110BE471A}|DreamQuestFixes.csproj|solutionrelative:dreamquestfixes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -20,9 +20,9 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "DreamQuestFixes.cs",
-              "DocumentMoniker": "C:\\Users\\Bruno\\Documents\\GitHub\\Mods\\DreamQuest\\WIP\\src\\DreamQuestFixes\\DreamQuestFixes.cs",
+              "DocumentMoniker": "C:\\Users\\Bruno\\Documents\\GitHub\\Mods\\DreamQuest\\src\\DreamQuestFixes\\DreamQuestFixes.cs",
               "RelativeDocumentMoniker": "DreamQuestFixes.cs",
-              "ToolTip": "C:\\Users\\Bruno\\Documents\\GitHub\\Mods\\DreamQuest\\WIP\\src\\DreamQuestFixes\\DreamQuestFixes.cs",
+              "ToolTip": "C:\\Users\\Bruno\\Documents\\GitHub\\Mods\\DreamQuest\\src\\DreamQuestFixes\\DreamQuestFixes.cs",
               "RelativeToolTip": "DreamQuestFixes.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
